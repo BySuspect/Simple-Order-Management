@@ -1,0 +1,26 @@
+<div class="container">
+  <app-search></app-search>
+
+  <ul>
+    <li *ngFor="let product of products">
+      <div class="main">
+        <a routerLink="/products/{{ product.name }}">
+          <img [src]="product.image" [alt]="product.name" />
+          <div class="content">
+            <span class="favorite {{ product.favorite ? '' : 'not' }}">
+              ❤
+            </span>
+            <div class="name">
+              {{ product.name }}
+            </div>
+            <div class="price">
+              <span>
+                {{ product.price | currency }}
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </li>
+  </ul>
+</div>
