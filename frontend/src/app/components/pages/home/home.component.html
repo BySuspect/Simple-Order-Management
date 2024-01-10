@@ -4,8 +4,10 @@
   <ul>
     <li *ngFor="let product of products">
       <div class="main">
-        <a routerLink="/products/{{ product.name }}">
-          <img [src]="product.image" [alt]="product.name" />
+        <a routerLink="/products/{{ product.id }}/{{ product.name }}">
+          <div class="image-container">
+            <img class="image" [src]="product.image" [alt]="product.name" />
+          </div>
           <div class="content">
             <span class="favorite {{ product.favorite ? '' : 'not' }}">
               ❤

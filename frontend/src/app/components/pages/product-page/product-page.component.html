@@ -1,0 +1,22 @@
+<div class="container">
+  <img [src]="product.image" [alt]="product.name" />
+
+  <div class="details">
+    <span class="name">
+      {{ product.name }}
+    </span>
+    <span class="favorite {{ product.favorite ? '' : 'not' }}">❤</span>
+
+    <p class="description">
+      {{ product.description }}
+    </p>
+
+    <div class="price">
+      <span>
+        {{ product.price | currency }}
+      </span>
+    </div>
+
+    <button>Add To Cart</button>
+  </div>
+</div>

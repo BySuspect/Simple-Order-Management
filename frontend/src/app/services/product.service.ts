@@ -17,4 +17,7 @@ export class ProductService {
       product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }
+  getProductById(id: number): Product {
+    return this.getAll().find((product) => product.id == id) ?? new Product();
+  }
 }

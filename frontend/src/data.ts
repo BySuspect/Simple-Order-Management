@@ -9,7 +9,7 @@ export const sample_product: Product[] = [
     size: 'S',
     stock: 20,
     favorite: false,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Introducing the amazing Cool Gizmo - a must-have for tech enthusiasts!',
   },
@@ -21,7 +21,7 @@ export const sample_product: Product[] = [
     size: 'M',
     stock: 5,
     favorite: true,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Upgrade your lifestyle with the Fancy Widget - sleek and stylish design!',
   },
@@ -33,7 +33,7 @@ export const sample_product: Product[] = [
     size: 'L',
     stock: 15,
     favorite: false,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Get the Super Saver Bundle and save big on your favorite products!',
   },
@@ -45,7 +45,7 @@ export const sample_product: Product[] = [
     size: 'XL',
     stock: 8,
     favorite: true,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Experience the future with the Glowing Gadget - a tech marvel that lights up your world!',
   },
@@ -57,7 +57,7 @@ export const sample_product: Product[] = [
     size: 'XS',
     stock: 25,
     favorite: false,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Unleash your inner ninja with the Stealthy Accessory - designed for the bold!',
   },
@@ -69,7 +69,7 @@ export const sample_product: Product[] = [
     size: 'S',
     stock: 10,
     favorite: true,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Embark on an adventure with the Epic Contraption - a game-changer in innovation!',
   },
@@ -81,7 +81,7 @@ export const sample_product: Product[] = [
     size: 'M',
     stock: 18,
     favorite: false,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Indulge in luxury with Royal Gadgetry - fit for kings and queens!',
   },
@@ -93,7 +93,7 @@ export const sample_product: Product[] = [
     size: 'L',
     stock: 12,
     favorite: true,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Chase the sunset with the Sunset Accessory - a vibrant addition to your collection!',
   },
@@ -105,7 +105,7 @@ export const sample_product: Product[] = [
     size: 'XL',
     stock: 7,
     favorite: false,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Embrace elegance with Floral Elegance - a timeless piece for every occasion!',
   },
@@ -117,7 +117,7 @@ export const sample_product: Product[] = [
     size: 'XS',
     stock: 14,
     favorite: true,
-    image: 'assets/sample_product.png',
+    image: 'https://picsum.photos/512/512',
     description:
       'Unleash the power of technology with the Tech Marvel - redefine your digital experience!',
   },
