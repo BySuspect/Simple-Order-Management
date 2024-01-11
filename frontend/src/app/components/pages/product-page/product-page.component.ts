@@ -19,7 +19,9 @@ export class ProductPageComponent implements OnInit {
   ) {
     activatedRoute.params.subscribe((params) => {
       if (params.id) {
-        this.product = productService.getProductById(params.id);
+        productService.getProductById(params.id).subscribe((serverProduct) => {
+          this.product = serverProduct;
+        });
       }
     });
   }

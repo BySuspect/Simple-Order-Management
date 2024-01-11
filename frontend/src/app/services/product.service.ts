@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../shared/models/Product';
 import { sample_product } from 'src/data';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {
+  PRODUCTS_BY_ID_URL,
+  PRODUCTS_BY_SEARCH_URL,
+  PRODUCTS_URL,
+} from '../shared/constants/urls';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getAll(): Product[] {
-    return sample_product;
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(PRODUCTS_URL);
   }
 
-  getAllProductsBySearchTerm(searchTerm: string): Product[] {
-    return sample_product.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  getAllProductsBySearchTerm(searchTerm: string) {
+    return this.http.get<Product[]>(PRODUCTS_BY_SEARCH_URL + searchTerm);
   }
-  getProductById(id: number): Product {
-    return this.getAll().find((product) => product.id == id) ?? new Product();
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(PRODUCTS_BY_ID_URL + id);
   }
 }

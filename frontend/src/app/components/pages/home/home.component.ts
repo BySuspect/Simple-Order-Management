@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/shared/models/Product';
 
@@ -14,14 +15,17 @@ export class HomeComponent {
     private productService: ProductService,
     actvatedRoute: ActivatedRoute
   ) {
+    let productsObservable: Observable<Product[]>;
     actvatedRoute.params.subscribe((params) => {
-      if (params.searchTerm) {
-        this.products = this.productService.getAllProductsBySearchTerm(
+      if (params.searchTerm)
+        productsObservable = this.productService.getAllProductsBySearchTerm(
           params.searchTerm
         );
-      } else {
-        this.products = productService.getAll();
-      }
+      else productsObservable = productService.getAll();
+
+      productsObservable.subscribe((serverProducts) => {
+        this.products = serverProducts;
+      });
     });
   }
 }
