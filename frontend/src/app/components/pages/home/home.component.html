@@ -1,6 +1,10 @@
 <div class="container">
   <app-search></app-search>
-
+  <app-not-found
+    [visible]="!products || !products.length"
+    resetLinkText="Reset Search"
+  >
+  </app-not-found>
   <ul>
     <li *ngFor="let product of products">
       <div class="main">
