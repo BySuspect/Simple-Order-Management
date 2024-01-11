@@ -120,3 +120,13 @@ export const sample_product: any[] = [
       "Unleash the power of technology with the Tech Marvel - redefine your digital experience!",
   },
 ];
+
+export const sample_users: any[] = [
+  {
+    name: "aaa aaaaaa",
+    email: "aaa@aaa",
+    password: "123",
+    address: "world",
+    isAdmin: true,
+  },
+];
