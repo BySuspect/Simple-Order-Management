@@ -7,6 +7,8 @@ import { HeaderComponent } from './components/partials/header/header.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { SearchComponent } from './components/partials/search/search.component';
 import { ProductPageComponent } from './components/pages/product-page/product-page.component';
+import { CartPageComponent } from './components/pages/cart-page/cart-page.component';
+import { TitleComponent } from './components/partials/title/title.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { ProductPageComponent } from './components/pages/product-page/product-pa
     HomeComponent,
     SearchComponent,
     ProductPageComponent,
+    CartPageComponent,
+    TitleComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

@@ -1,5 +1,7 @@
 <div class="container">
-  <img [src]="product.image" [alt]="product.name" />
+  <div class="image-container">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
 
   <div class="details">
     <span class="name">
@@ -17,6 +19,6 @@
       </span>
     </div>
 
-    <button>Add To Cart</button>
+    <button (click)="addToCart()">Add To Cart</button>
   </div>
 </div>
