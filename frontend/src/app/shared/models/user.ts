@@ -2,7 +2,7 @@ export class User {
   id!: number;
   email!: string;
   name!: string;
-  adress!: string;
+  address!: string;
   token!: string;
   isAdmin!: boolean;
 }
