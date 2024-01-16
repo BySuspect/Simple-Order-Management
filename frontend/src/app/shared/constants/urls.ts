@@ -6,3 +6,4 @@ export const PRODUCTS_BY_ID_URL = PRODUCTS_URL + '/';
 
 export const USERS_URL = BASE_URL + '/users';
 export const USER_LOGIN_URL = USERS_URL + '/login';
+export const USER_REGISTER_URL = USERS_URL + '/register';
