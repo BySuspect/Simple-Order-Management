@@ -26,12 +26,14 @@ router.post(
   "/login",
   asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-    const user = await UserModel.findOne({ email, password });
+    const user = await UserModel.findOne({ email });
 
     if (user) {
-      res.send(generateTokenReponse(user));
-    } else {
-      res.status(HTTP_BAD_REQUEST).send("Username or password is invalid!");
+      if (await bcrypt.compare(password, user.password)) {
+        res.send(generateTokenReponse(user));
+      } else {
+        res.status(HTTP_BAD_REQUEST).send("Email or password is invalid!");
+      }
     }
   })
 );
@@ -39,7 +41,6 @@ router.post(
 router.post(
   "/register",
   asyncHandler(async (req, res) => {
-    console.log(req.body);
     const { name, email, password, address } = req.body;
     const user = await UserModel.findOne({ email });
     if (user) {
