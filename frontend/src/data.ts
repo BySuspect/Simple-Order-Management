@@ -2,7 +2,7 @@ import { Product } from './app/shared/models/Product';
 
 export const sample_product: Product[] = [
   {
-    id: 1,
+    id: '1',
     name: 'Cool Gizmo',
     price: 25.49,
     color: 'Turquoise',
@@ -14,7 +14,7 @@ export const sample_product: Product[] = [
       'Introducing the amazing Cool Gizmo - a must-have for tech enthusiasts!',
   },
   {
-    id: 2,
+    id: '2',
     name: 'Fancy Widget',
     price: 34.79,
     color: 'Silver',
@@ -26,7 +26,7 @@ export const sample_product: Product[] = [
       'Upgrade your lifestyle with the Fancy Widget - sleek and stylish design!',
   },
   {
-    id: 3,
+    id: '3',
     name: 'Super Saver Bundle',
     price: 29.99,
     color: 'Gold',
@@ -38,7 +38,7 @@ export const sample_product: Product[] = [
       'Get the Super Saver Bundle and save big on your favorite products!',
   },
   {
-    id: 4,
+    id: '4',
     name: 'Glowing Gadget',
     price: 21.89,
     color: 'Neon Green',
@@ -48,77 +48,5 @@ export const sample_product: Product[] = [
     image: 'https://picsum.photos/512/512',
     description:
       'Experience the future with the Glowing Gadget - a tech marvel that lights up your world!',
-  },
-  {
-    id: 5,
-    name: 'Stealthy Accessory',
-    price: 18.49,
-    color: 'Charcoal',
-    size: 'XS',
-    stock: 25,
-    favorite: false,
-    image: 'https://picsum.photos/512/512',
-    description:
-      'Unleash your inner ninja with the Stealthy Accessory - designed for the bold!',
-  },
-  {
-    id: 6,
-    name: 'Epic Contraption',
-    price: 31.99,
-    color: 'Midnight Blue',
-    size: 'S',
-    stock: 10,
-    favorite: true,
-    image: 'https://picsum.photos/512/512',
-    description:
-      'Embark on an adventure with the Epic Contraption - a game-changer in innovation!',
-  },
-  {
-    id: 7,
-    name: 'Royal Gadgetry',
-    price: 15.79,
-    color: 'Burgundy',
-    size: 'M',
-    stock: 18,
-    favorite: false,
-    image: 'https://picsum.photos/512/512',
-    description:
-      'Indulge in luxury with Royal Gadgetry - fit for kings and queens!',
-  },
-  {
-    id: 8,
-    name: 'Sunset Accessory',
-    price: 23.99,
-    color: 'Coral',
-    size: 'L',
-    stock: 12,
-    favorite: true,
-    image: 'https://picsum.photos/512/512',
-    description:
-      'Chase the sunset with the Sunset Accessory - a vibrant addition to your collection!',
-  },
-  {
-    id: 9,
-    name: 'Floral Elegance',
-    price: 27.89,
-    color: 'Pearl White',
-    size: 'XL',
-    stock: 7,
-    favorite: false,
-    image: 'https://picsum.photos/512/512',
-    description:
-      'Embrace elegance with Floral Elegance - a timeless piece for every occasion!',
-  },
-  {
-    id: 10,
-    name: 'Tech Marvel',
-    price: 20.59,
-    color: 'Plum',
-    size: 'XS',
-    stock: 14,
-    favorite: true,
-    image: 'https://picsum.photos/512/512',
-    description:
-      'Unleash the power of technology with the Tech Marvel - redefine your digital experience!',
   },
 ];

@@ -24,12 +24,12 @@ export class CartService {
     this.setCartToLocalStorage();
   }
 
-  removeFromCart(id: number): void {
+  removeFromCart(id: string): void {
     this.cart.items = this.cart.items.filter((item) => item.product.id != id);
     this.setCartToLocalStorage();
   }
 
-  changeQuantity(id: number, quantity: number): void {
+  changeQuantity(id: string, quantity: number): void {
     let cartItem = this.cart.items.find((item) => item.product.id == id);
     if (!cartItem) return;
     cartItem.quantity = quantity;
