@@ -12,6 +12,13 @@
     </div>
 
     <order-items-list [order]="order"></order-items-list>
+    <button
+      class="checkout-btn"
+      *ngIf="order.status == 'NEW'"
+      (click)="checkoutClick()"
+    >
+      Checkout
+    </button>
   </div>
 
   <div>

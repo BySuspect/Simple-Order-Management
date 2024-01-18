@@ -26,3 +26,28 @@
   display: inline-block;
   width: 20%;
 }
+
+.checkout-btn {
+  align-self: center;
+  margin: 0.2rem;
+  background-color: transparent;
+  border: 1px solid #8f7676;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  line-height: 29px;
+  padding: 0 10px 0 11px;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: 20rem;
+  height: 3rem;
+}
+
+.checkout-btn:hover {
+  opacity: 0.8;
+}

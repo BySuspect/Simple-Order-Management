@@ -30,6 +30,11 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'payment/:id',
+    component: PaymentPageComponent,
+    canActivate: [authGuard],
+  },
+  {
     path: 'track/:orderId',
     component: OrderTrackPageComponent,
     canActivate: [authGuard],

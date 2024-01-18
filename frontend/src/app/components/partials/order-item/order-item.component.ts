@@ -19,6 +19,6 @@ export class OrderItemComponent {
     this.router.navigateByUrl('/track/' + this.order.id);
   }
   checkoutClick() {
-    this.router.navigateByUrl('/checkout');
+    this.router.navigateByUrl('/payment/' + this.order.id);
   }
 }

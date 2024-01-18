@@ -35,6 +35,9 @@ export class OrderTrackPageComponent implements OnInit {
         this.order = order;
       });
   }
+  checkoutClick() {
+    this.router.navigateByUrl('/payment/' + this.order.id);
+  }
 
   ngOnInit(): void {}
 }
