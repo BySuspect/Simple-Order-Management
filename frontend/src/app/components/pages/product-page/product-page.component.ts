@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { catchError, throwError } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/shared/models/Product';
@@ -15,13 +17,22 @@ export class ProductPageComponent implements OnInit {
     activatedRoute: ActivatedRoute,
     productService: ProductService,
     private cartService: CartService,
+    private toastrService: ToastrService,
     private router: Router
   ) {
     activatedRoute.params.subscribe((params) => {
       if (params.id) {
-        productService.getProductById(params.id).subscribe((serverProduct) => {
-          this.product = serverProduct;
-        });
+        productService
+          .getProductById(params.id)
+          .pipe(
+            catchError((error) => {
+              this.toastrService.error(error['error'], 'Error');
+              return throwError(error.error);
+            })
+          )
+          .subscribe((serverProduct) => {
+            this.product = serverProduct;
+          });
       }
     });
   }

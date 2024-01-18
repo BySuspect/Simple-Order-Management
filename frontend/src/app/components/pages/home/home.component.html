@@ -8,7 +8,7 @@
   <ul>
     <li *ngFor="let product of products">
       <div class="main">
-        <a routerLink="/products/{{ product.id }}/{{ product.name }}">
+        <a routerLink="/products/{{ product.id }}">
           <div class="image-container">
             <img class="image" [src]="product.image" [alt]="product.name" />
           </div>

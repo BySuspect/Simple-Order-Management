@@ -1,16 +1,17 @@
 import { Router } from "express";
-import asyncHander from "express-async-handler";
-import { HTTP_BAD_REQUEST } from "../constants/http_status";
+import asyncHandler from "express-async-handler";
+import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from "../constants/http_status";
 import { OrderStatus } from "../constants/order_status";
 import { OrderModel } from "../models/order.model";
 import auth from "../middlewares/auth.mid";
+import mongoose from "mongoose";
 
 const router = Router();
 router.use(auth);
 
 router.post(
   "/create",
-  asyncHander(async (req: any, res: any) => {
+  asyncHandler(async (req: any, res: any) => {
     const requestOrder = req.body;
 
     if (requestOrder.items.length <= 0) {
@@ -31,7 +32,7 @@ router.post(
 
 router.get(
   "/newOrderForCurrentUser",
-  asyncHander(async (req: any, res) => {
+  asyncHandler(async (req: any, res) => {
     const order = await OrderModel.findOne({
       user: req.user.id,
       status: OrderStatus.NEW,
@@ -43,7 +44,7 @@ router.get(
 
 router.post(
   "/pay",
-  asyncHander(async (req: any, res) => {
+  asyncHandler(async (req: any, res) => {
     const { paymentId } = req.body;
     const order = await getNewOrderForCurrentUser(req);
     if (!order) {
@@ -65,4 +66,21 @@ async function getNewOrderForCurrentUser(req: any) {
     status: OrderStatus.NEW,
   });
 }
+
+router.get(
+  "/track/:id",
+  asyncHandler(async (req, res) => {
+    const orderId = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(orderId)) {
+      res.status(HTTP_BAD_REQUEST).send("Invalid Order ID");
+      return;
+    }
+
+    const order = await OrderModel.findById(orderId);
+    if (order) res.send(order);
+    else res.status(HTTP_NOT_FOUND);
+  })
+);
+
 export default router;

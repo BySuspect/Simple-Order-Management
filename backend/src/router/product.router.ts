@@ -2,6 +2,8 @@ import { Router } from "express";
 import { sample_product } from "../data";
 import asyncHandler from "express-async-handler";
 import { ProductModel } from "../models/product.model";
+import mongoose from "mongoose";
+import { HTTP_BAD_REQUEST } from "../constants/http_status";
 
 const router = Router();
 
@@ -39,6 +41,12 @@ router.get(
 router.get(
   "/:id",
   asyncHandler(async (req, res) => {
+    const productId = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      res.status(HTTP_BAD_REQUEST).send("Invalid Product ID");
+      return;
+    }
+
     const product = await ProductModel.findById(req.params.id);
     res.send(product);
   })
