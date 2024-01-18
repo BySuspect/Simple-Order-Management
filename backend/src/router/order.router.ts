@@ -9,6 +9,17 @@ import mongoose from "mongoose";
 const router = Router();
 router.use(auth);
 
+router.get(
+  "/",
+  asyncHandler(async (req: any, res) => {
+    const order: any[] = await OrderModel.find({
+      user: req.user.id,
+    });
+    if (order) res.send(order);
+    else res.status(HTTP_BAD_REQUEST).send();
+  })
+);
+
 router.post(
   "/create",
   asyncHandler(async (req: any, res: any) => {

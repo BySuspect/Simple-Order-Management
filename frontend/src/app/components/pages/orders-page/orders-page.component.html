@@ -1,0 +1,10 @@
+<app-not-found
+  [visible]="!orders || !orders.length"
+  resetLinkText="Back to root"
+>
+</app-not-found>
+<div class="container">
+  <div *ngFor="let order of orders">
+    <order-item [order]="order"> </order-item>
+  </div>
+</div>

@@ -1,10 +1,11 @@
 table {
   width: 100%;
-  border: 1px solid #331d1d;
+  border: 0 solid #8f7676;
   margin-top: 1rem;
   border-radius: 15px;
   padding: 0.5rem 1rem;
   background-color: #000000b6;
+  justify-content: space-between;
 }
 
 h3 {
@@ -19,6 +20,7 @@ a:hover {
 
 td {
   height: 3rem;
+  border-bottom: 1px solid #8f7676;
 }
 
 td img {

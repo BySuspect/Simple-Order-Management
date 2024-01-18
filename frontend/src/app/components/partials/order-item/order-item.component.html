@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="info">
+      <span
+        >#<span>{{ order.id }}</span></span
+      >
+      <span
+        >Date:
+        <span>{{ order.createdAt | date : "medium" : "local" }}</span></span
+      >
+      <span
+        >Status: <span>{{ order.status }}</span></span
+      >
+    </div>
+    <div class="buttons">
+      <button (click)="trackClick()">Track</button>
+      <button *ngIf="order.status == 'NEW'" (click)="checkoutClick()">
+        Checkout
+      </button>
+    </div>
+  </div>
+  <order-items-list [order]="order"></order-items-list>
+</div>
