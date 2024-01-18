@@ -8,6 +8,7 @@ import express from "express";
 import cors from "cors";
 import productRouter from "./router/product.router";
 import userRouter from "./router/user.router";
+import orderRouter from "./router/order.router";
 const app = express();
 
 app.use(express.json());
@@ -21,6 +22,7 @@ app.use(
 
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
+app.use("/api/orders", orderRouter);
 
 const port = 5050;
 

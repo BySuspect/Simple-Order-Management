@@ -67,6 +67,7 @@ router.post(
 const generateTokenReponse = (user: User) => {
   const token = jwt.sign(
     {
+      id: user.id,
       email: user.email,
       isAdmin: user.isAdmin,
     },
