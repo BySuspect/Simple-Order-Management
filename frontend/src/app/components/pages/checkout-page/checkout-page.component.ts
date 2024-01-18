@@ -29,6 +29,11 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.order.items.length == 0) {
+      this.toastrService.error('cart is empty!', 'Error');
+      this.router.navigateByUrl('/');
+      return;
+    }
     let { name, address } = this.userService.currentUser;
     this.checkoutForm = this.formBuilder.group({
       name: [name, Validators.required],
