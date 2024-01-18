@@ -62,8 +62,9 @@ import { OrderItemComponent } from './components/partials/order-item/order-item.
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-top-right',
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+      closeButton: true,
     }),
   ],
   providers: [
