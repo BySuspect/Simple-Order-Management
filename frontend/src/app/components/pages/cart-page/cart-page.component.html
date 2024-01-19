@@ -11,12 +11,7 @@
         <img [src]="cartItem.product.image" [alt]="cartItem.product.name" />
       </div>
       <div>
-        <a
-          class="name"
-          routerLink="/product/{{ cartItem.product.id }}/{{
-            cartItem.product.name
-          }}"
-        >
+        <a class="name" routerLink="/products/{{ cartItem.product.id }}">
           {{ cartItem.product.name }}
         </a>
       </div>
@@ -27,11 +22,12 @@
           [value]="cartItem.quantity"
           (change)="changeQuantity(cartItem, quantitySelect.value)"
         >
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+          <option *ngIf="cartItem.product.stock <= 0">0</option>
+          <option *ngIf="cartItem.product.stock >= 1">1</option>
+          <option *ngIf="cartItem.product.stock >= 2">2</option>
+          <option *ngIf="cartItem.product.stock >= 3">3</option>
+          <option *ngIf="cartItem.product.stock >= 4">4</option>
+          <option *ngIf="cartItem.product.stock >= 5">5</option>
         </select>
       </div>
       <div>
@@ -51,6 +47,6 @@
       <div class="total-price">{{ cart.totalPrice | currency }}</div>
     </div>
 
-    <a routerLink="/checkout">Proceed to Checkout</a>
+    <button (click)="checkout()"><span>Proceed to Checkout</span></button>
   </div>
 </div>

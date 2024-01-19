@@ -1,6 +1,10 @@
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
-import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from "../constants/http_status";
+import {
+  HTTP_BAD_REQUEST,
+  HTTP_NOT_FOUND,
+  HTTP_SUCCESS,
+} from "../constants/http_status";
 import { OrderStatus } from "../constants/order_status";
 import { OrderModel } from "../models/order.model";
 import auth from "../middlewares/auth.mid";
@@ -15,7 +19,7 @@ router.get(
     const order: any[] = await OrderModel.find({
       user: req.user.id,
     });
-    if (order) res.send(order);
+    if (order) res.status(HTTP_SUCCESS).send(order);
     else res.status(HTTP_BAD_REQUEST).send();
   })
 );
@@ -37,7 +41,7 @@ router.post(
 
     const newOrder = new OrderModel({ ...requestOrder, user: req.user.id });
     await newOrder.save();
-    res.send(newOrder);
+    res.status(HTTP_SUCCESS).send(newOrder);
   })
 );
 
@@ -48,7 +52,7 @@ router.get(
       user: req.user.id,
       status: OrderStatus.NEW,
     });
-    if (order) res.send(order);
+    if (order) res.status(HTTP_SUCCESS).send(order);
     else res.status(HTTP_BAD_REQUEST).send();
   })
 );
@@ -67,7 +71,7 @@ router.post(
     order.status = OrderStatus.PAYED;
     await order.save();
 
-    res.send(order._id);
+    res.status(HTTP_SUCCESS).send(order._id);
   })
 );
 
@@ -89,7 +93,7 @@ router.get(
     }
 
     const order = await OrderModel.findById(orderId);
-    if (order) res.send(order);
+    if (order) res.status(HTTP_SUCCESS).send(order);
     else res.status(HTTP_NOT_FOUND);
   })
 );

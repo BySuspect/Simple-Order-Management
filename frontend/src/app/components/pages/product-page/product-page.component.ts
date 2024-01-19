@@ -15,7 +15,7 @@ export class ProductPageComponent implements OnInit {
   product!: Product;
   constructor(
     activatedRoute: ActivatedRoute,
-    productService: ProductService,
+    private productService: ProductService,
     private cartService: CartService,
     private toastrService: ToastrService,
     private router: Router

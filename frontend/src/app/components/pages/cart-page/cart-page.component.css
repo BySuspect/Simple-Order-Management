@@ -108,7 +108,7 @@ li .remove-button:hover {
   content: "Price: ";
 }
 
-.checkout a {
+.checkout button {
   padding: 1rem;
   color: white;
   background: #4f8f01;
@@ -120,7 +120,15 @@ li .remove-button:hover {
   justify-self: center;
 }
 
-.checkout a:hover {
+.checkout button span {
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  opacity: 0.9;
+  justify-self: center;
+}
+
+.checkout button:hover {
   opacity: 1;
   cursor: pointer;
 }

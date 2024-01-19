@@ -73,4 +73,5 @@ a span {
 .menu a {
   width: 100%;
   min-width: 8rem;
+  border-bottom: 1px solid #8f7676;
 }

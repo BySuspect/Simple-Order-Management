@@ -78,3 +78,25 @@ li a:hover {
   margin-top: 0.7rem;
   font-size: 1.1rem;
 }
+
+.price.less-stock {
+  position: relative;
+  bottom: 0.2rem;
+  padding: 0 100% 0 0;
+  color: #0c8d1b;
+  margin-top: 0.7rem;
+  font-size: 1.1rem;
+}
+
+.stock {
+  display: table-row;
+  bottom: 0.1rem;
+  margin-top: 0.7rem;
+  font-size: 1.1rem;
+  color: red;
+}
+
+.stock::before {
+  content: "Stock: ";
+  color: red;
+}

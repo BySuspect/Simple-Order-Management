@@ -53,6 +53,17 @@ img {
   color: grey;
 }
 
+.stock {
+  font-size: 1.1rem;
+  margin: 1rem 2rem 2rem 0;
+  color: red;
+}
+
+.stock::before {
+  content: "Stock: ";
+  color: red;
+}
+
 .price {
   font-size: 1.8rem;
   margin: 1rem 2rem 2rem 0;
@@ -77,6 +88,17 @@ button {
 button:hover {
   opacity: 0.9;
   cursor: pointer;
+}
+
+button:disabled {
+  background: #000000;
+  border: 1px solid #2e2d19;
+  color: #555;
+}
+
+button:disabled:hover {
+  opacity: 1;
+  cursor: not-allowed;
 }
 
 /* Media Queries */

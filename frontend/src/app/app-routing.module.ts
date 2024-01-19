@@ -10,9 +10,11 @@ import { authGuard } from './auth/guards/auth.guard';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
 import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component';
+import { TestPageComponent } from './components/pages/test-page/test-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'test', component: TestPageComponent },
   { path: 'search/:searchTerm', component: HomeComponent },
   { path: 'products/:id', component: ProductPageComponent },
   { path: 'products/:id', component: ProductPageComponent },

@@ -19,7 +19,14 @@
             <div class="name">
               {{ product.name }}
             </div>
-            <div class="price">
+
+            <div *ngIf="product.stock < 10" class="stock">
+              <span>
+                {{ product.stock }}
+              </span>
+            </div>
+
+            <div class="price {{ product.stock < 10 ? 'less-stock' : '' }}">
               <span>
                 {{ product.price | currency }}
               </span>

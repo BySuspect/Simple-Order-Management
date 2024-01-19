@@ -6,6 +6,7 @@ dbConnect();
 
 import express from "express";
 import cors from "cors";
+import morgan from "morgan";
 import productRouter from "./router/product.router";
 import userRouter from "./router/user.router";
 import orderRouter from "./router/order.router";
@@ -19,6 +20,9 @@ app.use(
     origin: ["http://localhost:4200"],
   })
 );
+
+// Enable request logging in the development environment
+app.use(morgan("dev"));
 
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);

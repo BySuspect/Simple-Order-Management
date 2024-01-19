@@ -9,15 +9,29 @@ import {
 } from '../shared/constants/urls';
 import { Order } from '../shared/models/Order';
 import { Observable } from 'rxjs';
+import { ProductService } from './product.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private productService: ProductService
+  ) {}
 
   create(order: Order) {
-    return this.http.post<Order>(ORDER_CREATE_URL, order);
+    const newOrder = this.http.post<Order>(ORDER_CREATE_URL, order);
+
+    order.items.forEach((element) => {
+      this.productService
+        .dropStock(element.product, element.quantity)
+        .subscribe((any) => {
+          console.log(any);
+        });
+    });
+
+    return newOrder;
   }
 
   getNewOrderForCurrentUser(): Observable<Order> {

@@ -29,6 +29,7 @@ import { PaymentPageComponent } from './components/pages/payment-page/payment-pa
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
 import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component';
 import { OrderItemComponent } from './components/partials/order-item/order-item.component';
+import { TestPageComponent } from './components/pages/test-page/test-page.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { OrderItemComponent } from './components/partials/order-item/order-item.
     OrderTrackPageComponent,
     OrdersPageComponent,
     OrderItemComponent,
+    TestPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import { User, UserModel } from "../models/user.mode";
-import { HTTP_BAD_REQUEST } from "../constants/http_status";
+import { HTTP_BAD_REQUEST, HTTP_SUCCESS } from "../constants/http_status";
 
 const router = Router();
 
@@ -18,7 +18,7 @@ router.get(
     }
 
     await UserModel.create(sample_users);
-    res.send("Seed is done!");
+    res.status(HTTP_SUCCESS).send("Seed is done!");
   })
 );
 
@@ -30,7 +30,7 @@ router.post(
 
     if (user) {
       if (await bcrypt.compare(password, user.password)) {
-        res.send(generateTokenReponse(user));
+        res.status(HTTP_SUCCESS).send(generateTokenReponse(user));
       } else {
         res.status(HTTP_BAD_REQUEST).send("Email or password is invalid!");
       }
@@ -60,7 +60,7 @@ router.post(
     };
 
     const dbUser = await UserModel.create(newUser);
-    res.send(generateTokenReponse(dbUser));
+    res.status(HTTP_SUCCESS).send(generateTokenReponse(dbUser));
   })
 );
 

@@ -19,12 +19,20 @@
       {{ product.description }}
     </p>
 
+    <div *ngIf="product.stock < 10" class="stock">
+      <span>
+        {{ product.stock }}
+      </span>
+    </div>
     <div class="price">
       <span>
         {{ product.price | currency }}
       </span>
     </div>
 
-    <button (click)="addToCart()">Add To Cart</button>
+    <button *ngIf="product.stock > 0" (click)="addToCart()">Add To Cart</button>
+    <button *ngIf="product.stock == 0" class="disabled-button" disabled>
+      Not Available
+    </button>
   </div>
 </div>
