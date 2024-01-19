@@ -7,6 +7,7 @@ import {
   PRODUCTS_BY_ID_URL,
   PRODUCTS_BY_SEARCH_URL,
   PRODUCTS_DROP_STOCK_URL,
+  PRODUCTS_UPDATE_STOCK_URL,
   PRODUCTS_URL,
 } from '../shared/constants/urls';
 
@@ -31,6 +32,13 @@ export class ProductService {
     return this.http.post(PRODUCTS_DROP_STOCK_URL, {
       productId: product.id,
       quantity: quantity,
+    });
+  }
+
+  updateStock(product: Product, stock: number) {
+    return this.http.post(PRODUCTS_UPDATE_STOCK_URL, {
+      productId: product.id,
+      stock: stock,
     });
   }
 }

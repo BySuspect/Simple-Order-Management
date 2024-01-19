@@ -13,7 +13,6 @@ import { Order } from 'src/app/shared/models/Order';
 })
 export class PaymentPageComponent implements OnInit {
   order: Order = new Order();
-  isEdit: boolean = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private orderService: OrderService,
@@ -23,7 +22,6 @@ export class PaymentPageComponent implements OnInit {
   ) {
     activatedRoute.params.subscribe((params) => {
       if (params.id) {
-        this.isEdit = true;
         orderService
           .getOrderById(params.id)
           .pipe(
@@ -35,17 +33,6 @@ export class PaymentPageComponent implements OnInit {
           .subscribe((serverOrder) => {
             this.order = serverOrder;
           });
-      } else {
-        this.isEdit = false;
-        orderService.getNewOrderForCurrentUser().subscribe({
-          next: (order) => {
-            this.order = order;
-          },
-          error: () => {
-            this.toastrService.error('order is empty!', 'Error');
-            router.navigateByUrl('/checkout');
-          },
-        });
       }
     });
   }
@@ -60,7 +47,6 @@ export class PaymentPageComponent implements OnInit {
   submit() {
     this.orderService.pay(this.order).subscribe({
       next: (orderId) => {
-        if (!this.isEdit) this.cartService.clearCart();
         this.router.navigateByUrl('/track/' + orderId);
         this.toastrService.success('Payment Saved Successfully', 'Success');
       },

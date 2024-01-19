@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   ORDERS_URL,
+  ORDER_CANCEL_URL,
   ORDER_CREATE_URL,
   ORDER_NEW_FOR_CURRENT_USER_URL,
   ORDER_PAY_URL,
@@ -52,5 +53,23 @@ export class OrderService {
 
   getAllOrdersForCurrentUser(): Observable<Order[]> {
     return this.http.get<Order[]>(ORDERS_URL);
+  }
+
+  cancelOrder(order: Order): any {
+    const newOrder = this.http.post(ORDER_CANCEL_URL, order);
+
+    order.items.forEach((element) => {
+      this.productService
+        .getProductById(element.product.id)
+        .subscribe((product) => {
+          this.productService
+            .updateStock(product, product.stock + element.quantity)
+            .subscribe((any) => {
+              console.log(any);
+            });
+        });
+    });
+
+    return newOrder;
   }
 }

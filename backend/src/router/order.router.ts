@@ -34,14 +34,33 @@ router.post(
       return;
     }
 
-    await OrderModel.deleteOne({
-      user: req.user.id,
-      status: OrderStatus.NEW,
-    });
-
     const newOrder = new OrderModel({ ...requestOrder, user: req.user.id });
     await newOrder.save();
     res.status(HTTP_SUCCESS).send(newOrder);
+  })
+);
+
+router.post(
+  "/cancel",
+  asyncHandler(async (req: any, res: any) => {
+    const requestOrder = req.body;
+
+    if (requestOrder.items.length <= 0) {
+      res.status(HTTP_BAD_REQUEST).send();
+      return;
+    }
+
+    const order = await OrderModel.findOne({ _id: requestOrder.id });
+    if (!order) {
+      res.status(HTTP_BAD_REQUEST).send("Order Not Found!");
+      return;
+    }
+
+    order.status = OrderStatus.CANCELED;
+
+    await order.save();
+
+    res.send(order);
   })
 );
 

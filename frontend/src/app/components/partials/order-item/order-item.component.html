@@ -13,9 +13,21 @@
       >
     </div>
     <div class="buttons">
-      <button (click)="trackClick()">Track</button>
+      <button *ngIf="order.status != 'CANCELED'" (click)="trackClick()">
+        Track
+      </button>
       <button *ngIf="order.status == 'NEW'" (click)="checkoutClick()">
         Checkout
+      </button>
+      <button
+        *ngIf="
+          order.status != 'DELIVERED' &&
+          order.status != 'SHIPPED' &&
+          order.status != 'CANCELED'
+        "
+        (click)="cancelClick()"
+      >
+        Cancel
       </button>
     </div>
   </div>

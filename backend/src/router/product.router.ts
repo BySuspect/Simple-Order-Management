@@ -59,7 +59,6 @@ router.get(
 router.post(
   "/dropstock",
   asyncHandler(async (req: any, res) => {
-    console.log("Drop stock" + req.body);
     const { productId, quantity } = req.body;
     const product = await ProductModel.findOne({ _id: productId });
     if (!product) {
@@ -70,6 +69,22 @@ router.post(
     if (product.stock > 0) product.stock -= quantity;
     else
       res.status(HTTP_INTERNAL_SERVER_ERROR).send("Product stock is already 0");
+    await product.save();
+
+    res.send(product._id);
+  })
+);
+router.post(
+  "/updatestock",
+  asyncHandler(async (req: any, res) => {
+    const { productId, stock } = req.body;
+    const product = await ProductModel.findOne({ _id: productId });
+    if (!product) {
+      res.status(HTTP_BAD_REQUEST).send("Product Not Found!");
+      return;
+    }
+
+    product.stock = stock;
     await product.save();
 
     res.send(product._id);
