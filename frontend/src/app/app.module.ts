@@ -30,6 +30,7 @@ import { OrderTrackPageComponent } from './components/pages/order-track-page/ord
 import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component';
 import { OrderItemComponent } from './components/partials/order-item/order-item.component';
 import { TestPageComponent } from './components/pages/test-page/test-page.component';
+import { AdminPanelPageComponent } from './components/pages/admin-panel-page/admin-panel-page.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { TestPageComponent } from './components/pages/test-page/test-page.compon
     OrdersPageComponent,
     OrderItemComponent,
     TestPageComponent,
+    AdminPanelPageComponent,
   ],
   imports: [
     BrowserModule,

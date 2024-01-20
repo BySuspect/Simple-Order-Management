@@ -11,6 +11,8 @@ import { PaymentPageComponent } from './components/pages/payment-page/payment-pa
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
 import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component';
 import { TestPageComponent } from './components/pages/test-page/test-page.component';
+import { adminGuard } from './auth/guards/admin.guard';
+import { AdminPanelPageComponent } from './components/pages/admin-panel-page/admin-panel-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +23,11 @@ const routes: Routes = [
   { path: 'cart-page', component: CartPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
+  {
+    path: 'panel',
+    component: AdminPanelPageComponent,
+    canActivate: [adminGuard],
+  },
   {
     path: 'checkout',
     component: CheckoutPageComponent,
