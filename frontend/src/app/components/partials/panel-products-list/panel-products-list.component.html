@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="before-card" *ngFor="let product of products">
+    <div class="card">
+      <div class="card-header">
+        <img [src]="product.image" [alt]="product.name" />
+        <span>{{ product.name }}</span>
+      </div>
+      <div class="card-body">
+        <div>
+          <span>#{{ product.id }}</span>
+        </div>
+        <div>
+          <span>{{ product.price | currency }}</span>
+        </div>
+        <div>
+          <span>{{ product.size }}</span>
+        </div>
+        <div>
+          <span>{{ product.stock }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button (click)="updateProduct(product)">Update</button>
+      <button (click)="deleteProduct(product)">Delete</button>
+    </div>
+  </div>
+</div>

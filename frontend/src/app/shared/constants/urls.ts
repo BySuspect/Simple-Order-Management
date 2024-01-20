@@ -2,10 +2,10 @@ const BASE_URL = 'http://localhost:5050/api';
 
 //Product
 export const PRODUCTS_URL = BASE_URL + '/products';
-export const PRODUCTS_BY_SEARCH_URL = PRODUCTS_URL + '/search/';
-export const PRODUCTS_BY_ID_URL = PRODUCTS_URL + '/';
-export const PRODUCTS_DROP_STOCK_URL = PRODUCTS_URL + '/dropstock';
-export const PRODUCTS_UPDATE_STOCK_URL = PRODUCTS_URL + '/updatestock';
+export const PRODUCT_BY_SEARCH_URL = PRODUCTS_URL + '/search/';
+export const PRODUCT_BY_ID_URL = PRODUCTS_URL + '/';
+export const PRODUCT_DROP_STOCK_URL = PRODUCTS_URL + '/dropstock';
+export const PRODUCT_UPDATE_URL = PRODUCTS_URL + '/update';
 
 //User
 export const USERS_URL = BASE_URL + '/users';

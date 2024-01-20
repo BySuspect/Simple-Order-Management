@@ -62,11 +62,10 @@ export class OrderService {
       this.productService
         .getProductById(element.product.id)
         .subscribe((product) => {
-          this.productService
-            .updateStock(product, product.stock + element.quantity)
-            .subscribe((any) => {
-              console.log(any);
-            });
+          product.stock += element.quantity;
+          this.productService.updateProduct(product).subscribe((any) => {
+            console.log(any);
+          });
         });
     });
 

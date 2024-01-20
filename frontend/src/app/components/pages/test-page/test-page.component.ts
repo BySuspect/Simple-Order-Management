@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
-import { PRODUCTS_DROP_STOCK_URL } from 'src/app/shared/constants/urls';
+import { PRODUCT_DROP_STOCK_URL } from 'src/app/shared/constants/urls';
 
 @Component({
   selector: 'app-test-page',
@@ -20,7 +20,7 @@ export class TestPageComponent {
   test1() {
     console.log('test1 click');
     this.http
-      .post(PRODUCTS_DROP_STOCK_URL, {
+      .post(PRODUCT_DROP_STOCK_URL, {
         productId: '65a5507361e232d8dff03cd3',
         quantity: 1,
       })

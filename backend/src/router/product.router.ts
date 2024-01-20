@@ -6,7 +6,7 @@ import mongoose, { ObjectId } from "mongoose";
 import {
   HTTP_BAD_REQUEST,
   HTTP_INTERNAL_SERVER_ERROR,
-  HTTP_SUCCESS,
+  HTTP_OK,
 } from "../constants/http_status";
 
 const router = Router();
@@ -21,7 +21,7 @@ router.get(
     }
 
     await ProductModel.create(sample_product);
-    res.status(HTTP_SUCCESS).send("Seed is done!");
+    res.status(HTTP_OK).send("Seed is done!");
   })
 );
 
@@ -29,7 +29,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const products = await ProductModel.find();
-    res.status(HTTP_SUCCESS).send(products);
+    res.status(HTTP_OK).send(products);
   })
 );
 
@@ -38,7 +38,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const searchRegex = new RegExp(req.params.searchTerm, "i");
     const produts = await ProductModel.find({ name: { $regex: searchRegex } });
-    res.status(HTTP_SUCCESS).send(produts);
+    res.status(HTTP_OK).send(produts);
   })
 );
 
@@ -52,7 +52,7 @@ router.get(
     }
 
     const product = await ProductModel.findById(req.params.id);
-    res.status(HTTP_SUCCESS).send(product);
+    res.status(HTTP_OK).send(product);
   })
 );
 
@@ -75,19 +75,27 @@ router.post(
   })
 );
 router.post(
-  "/updatestock",
+  "/update",
   asyncHandler(async (req: any, res) => {
-    const { productId, stock } = req.body;
-    const product = await ProductModel.findOne({ _id: productId });
+    const newProduct = req.body;
+    const product = await ProductModel.findOne({ _id: newProduct.id });
     if (!product) {
       res.status(HTTP_BAD_REQUEST).send("Product Not Found!");
       return;
     }
 
-    product.stock = stock;
-    await product.save();
+    product.name = newProduct.name;
+    product.description = newProduct.description;
+    product.price = newProduct.price;
+    product.stock = newProduct.stock;
+    product.image = newProduct.image;
+    product.size = newProduct.size;
+    product.color = newProduct.color;
 
-    res.send(product._id);
+    if (product) {
+      await product.save();
+      res.send(product._id);
+    } else res.status(HTTP_INTERNAL_SERVER_ERROR).send("Product not updated");
   })
 );
 
