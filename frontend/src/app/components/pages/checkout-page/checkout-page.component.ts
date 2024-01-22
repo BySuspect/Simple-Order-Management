@@ -21,7 +21,7 @@ export class CheckoutPageComponent implements OnInit {
     private userService: UserService,
     private toastrService: ToastrService,
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
   ) {
     const cart = cartService.getCart();
     this.order.items = cart.items;
@@ -54,7 +54,7 @@ export class CheckoutPageComponent implements OnInit {
     if (!this.order.addressLatLng) {
       this.toastrService.warning(
         'Please select your location on the map',
-        'Location'
+        'Location',
       );
       return;
     }

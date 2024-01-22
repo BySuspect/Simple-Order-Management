@@ -18,7 +18,7 @@ app.use(
   cors({
     credentials: true,
     origin: ["http://localhost:4200"],
-  })
+  }),
 );
 
 // Enable request logging in the development environment

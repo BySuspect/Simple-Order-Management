@@ -21,7 +21,7 @@ router.get(
     });
     if (order) res.status(HTTP_OK).send(order);
     else res.status(HTTP_BAD_REQUEST).send();
-  })
+  }),
 );
 
 router.post(
@@ -37,7 +37,7 @@ router.post(
     const newOrder = new OrderModel({ ...requestOrder, user: req.user.id });
     await newOrder.save();
     res.status(HTTP_OK).send(newOrder);
-  })
+  }),
 );
 
 router.post(
@@ -61,7 +61,7 @@ router.post(
     await order.save();
 
     res.send(order);
-  })
+  }),
 );
 
 router.get(
@@ -73,7 +73,7 @@ router.get(
     });
     if (order) res.status(HTTP_OK).send(order);
     else res.status(HTTP_BAD_REQUEST).send();
-  })
+  }),
 );
 
 router.post(
@@ -91,7 +91,7 @@ router.post(
     await order.save();
 
     res.status(HTTP_OK).send(order._id);
-  })
+  }),
 );
 
 async function getNewOrderForCurrentUser(req: any) {
@@ -114,7 +114,7 @@ router.get(
     const order = await OrderModel.findById(orderId);
     if (order) res.status(HTTP_OK).send(order);
     else res.status(HTTP_NOT_FOUND);
-  })
+  }),
 );
 
 export default router;

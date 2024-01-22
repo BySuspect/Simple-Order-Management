@@ -12,7 +12,7 @@ export class OrdersPageComponent {
   orders: Order[] = [];
   constructor(
     private toastrService: ToastrService,
-    private orderService: OrderService
+    private orderService: OrderService,
   ) {
     orderService.getAllOrdersForCurrentUser().subscribe((orders) => {
       this.orders = orders;

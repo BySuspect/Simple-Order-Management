@@ -6,6 +6,10 @@
   },
   "scripts": {
     "frontend": "cd frontend && npm start",
-    "backend": "cd backend && npm start"
+    "backend": "cd backend && npm start",
+    "prettier": "npx prettier . --write"
+  },
+  "devDependencies": {
+    "prettier": "3.2.4"
   }
 }

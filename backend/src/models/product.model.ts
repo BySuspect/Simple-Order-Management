@@ -31,7 +31,7 @@ export const ProductSchema = new Schema<Product>(
       virtuals: true,
     },
     timestamps: true,
-  }
+  },
 );
 
 export const ProductModel = model<Product>("product", ProductSchema);

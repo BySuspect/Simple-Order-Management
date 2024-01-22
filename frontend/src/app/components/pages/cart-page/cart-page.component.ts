@@ -20,7 +20,7 @@ export class CartPageComponent {
     private cartService: CartService,
     private toastrService: ToastrService,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
   ) {
     this.cartService.getCartObservable().subscribe((cart) => {
       this.cart = cart;
@@ -38,7 +38,7 @@ export class CartPageComponent {
 
   checkout(): void {
     const requests = this.cart.items.map((cartItem) =>
-      this.productService.getProductById(cartItem.product.id)
+      this.productService.getProductById(cartItem.product.id),
     );
 
     forkJoin(requests)
@@ -46,7 +46,7 @@ export class CartPageComponent {
         catchError((error) => {
           this.toastrService.error(error['error'], 'Error');
           return throwError(error.error);
-        })
+        }),
       )
       .subscribe((serverProducts) => {
         let hasStock = true;
@@ -55,7 +55,7 @@ export class CartPageComponent {
           if (serverProduct.stock < cartItem.quantity) {
             this.toastrService.error(
               'Not enough stock for ' + serverProduct.name,
-              'Error'
+              'Error',
             );
             hasStock = false;
           }

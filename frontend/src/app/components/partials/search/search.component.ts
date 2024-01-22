@@ -9,7 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SearchComponent {
   searchTerm = '';
 
-  constructor(activatedRotue: ActivatedRoute, private router: Router) {
+  constructor(
+    activatedRotue: ActivatedRoute,
+    private router: Router,
+  ) {
     activatedRotue.queryParams.subscribe((params) => {
       if (params.searchTerm) this.searchTerm = params.searchTerm;
     });

@@ -14,13 +14,13 @@ export class HomeComponent {
   products: Product[] = [];
   constructor(
     private productService: ProductService,
-    actvatedRoute: ActivatedRoute
+    actvatedRoute: ActivatedRoute,
   ) {
     let productsObservable: Observable<Product[]>;
     actvatedRoute.params.subscribe((params) => {
       if (params.searchTerm)
         productsObservable = this.productService.getAllProductsBySearchTerm(
-          params.searchTerm
+          params.searchTerm,
         );
       else productsObservable = productService.getAll();
 

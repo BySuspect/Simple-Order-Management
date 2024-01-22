@@ -84,7 +84,7 @@ const orderSchema = new Schema<Order>(
     toObject: {
       virtuals: true,
     },
-  }
+  },
 );
 
 export const OrderModel = model("order", orderSchema);

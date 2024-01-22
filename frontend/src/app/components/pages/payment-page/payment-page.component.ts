@@ -18,7 +18,7 @@ export class PaymentPageComponent implements OnInit {
     private orderService: OrderService,
     private cartService: CartService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
   ) {
     activatedRoute.params.subscribe((params) => {
       if (params.id) {
@@ -28,7 +28,7 @@ export class PaymentPageComponent implements OnInit {
             catchError((error) => {
               this.toastrService.error(error['error'], 'Error');
               return throwError(error.error);
-            })
+            }),
           )
           .subscribe((serverOrder) => {
             this.order = serverOrder;

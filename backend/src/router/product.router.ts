@@ -22,7 +22,7 @@ router.get(
 
     await ProductModel.create(sample_product);
     res.status(HTTP_OK).send("Seed is done!");
-  })
+  }),
 );
 
 router.get(
@@ -30,7 +30,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const products = await ProductModel.find();
     res.status(HTTP_OK).send(products);
-  })
+  }),
 );
 
 router.get(
@@ -39,7 +39,7 @@ router.get(
     const searchRegex = new RegExp(req.params.searchTerm, "i");
     const produts = await ProductModel.find({ name: { $regex: searchRegex } });
     res.status(HTTP_OK).send(produts);
-  })
+  }),
 );
 
 router.get(
@@ -53,7 +53,7 @@ router.get(
 
     const product = await ProductModel.findById(req.params.id);
     res.status(HTTP_OK).send(product);
-  })
+  }),
 );
 
 router.post(
@@ -72,7 +72,7 @@ router.post(
     await product.save();
 
     res.send(product._id);
-  })
+  }),
 );
 router.post(
   "/update",
@@ -96,7 +96,7 @@ router.post(
       await product.save();
       res.send(product._id);
     } else res.status(HTTP_INTERNAL_SERVER_ERROR).send("Product not updated");
-  })
+  }),
 );
 
 export default router;

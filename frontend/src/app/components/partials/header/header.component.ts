@@ -11,7 +11,10 @@ import { User } from 'src/app/shared/models/user';
 export class HeaderComponent {
   cartQuantity = 0;
   user!: User;
-  constructor(cartService: CartService, private userService: UserService) {
+  constructor(
+    cartService: CartService,
+    private userService: UserService,
+  ) {
     cartService.getCartObservable().subscribe((newCart) => {
       this.cartQuantity = newCart.totalCount;
     });

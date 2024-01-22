@@ -19,7 +19,7 @@ router.get(
 
     await UserModel.create(sample_users);
     res.status(HTTP_OK).send("Seed is done!");
-  })
+  }),
 );
 
 router.post(
@@ -35,7 +35,7 @@ router.post(
         res.status(HTTP_BAD_REQUEST).send("Email or password is invalid!");
       }
     }
-  })
+  }),
 );
 
 router.post(
@@ -61,7 +61,7 @@ router.post(
 
     const dbUser = await UserModel.create(newUser);
     res.status(HTTP_OK).send(generateTokenReponse(dbUser));
-  })
+  }),
 );
 
 const generateTokenReponse = (user: User) => {
@@ -74,7 +74,7 @@ const generateTokenReponse = (user: User) => {
     process.env.JWT_SECRET!,
     {
       expiresIn: "30d",
-    }
+    },
   );
 
   return {

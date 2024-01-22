@@ -21,7 +21,7 @@ export class LocationService {
         },
         (error) => {
           observer.error(error);
-        }
+        },
       );
     });
   }

@@ -7,6 +7,6 @@ export const dbConnect = () => {
     },
     (err) => {
       console.log(err);
-    }
+    },
   );
 };

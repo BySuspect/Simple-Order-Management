@@ -14,11 +14,14 @@ const USER_KEY = 'User';
 })
 export class UserService {
   private userSubject = new BehaviorSubject<User>(
-    this.getUserFromLocalStorage()
+    this.getUserFromLocalStorage(),
   );
   public userObservable: Observable<User>;
 
-  constructor(private http: HttpClient, private toastrService: ToastrService) {
+  constructor(
+    private http: HttpClient,
+    private toastrService: ToastrService,
+  ) {
     this.userObservable = this.userSubject.asObservable();
   }
 
@@ -33,14 +36,14 @@ export class UserService {
           this.userSubject.next(user);
           this.toastrService.success(
             `Welcome ${user.name}!`,
-            'Login Successful'
+            'Login Successful',
           );
           this.setUserToLocalStorage(user);
         },
         error: (error) => {
           this.toastrService.error(error.error, 'Login Failed');
         },
-      })
+      }),
     );
   }
 
@@ -52,13 +55,13 @@ export class UserService {
           this.userSubject.next(user);
           this.toastrService.success(
             `Welcome ${user.name}`,
-            'Register Successful'
+            'Register Successful',
           );
         },
         error: (errorResponse) => {
           this.toastrService.error(errorResponse.error, 'Register Failed');
         },
-      })
+      }),
     );
   }
 

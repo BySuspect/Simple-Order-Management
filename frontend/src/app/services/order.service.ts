@@ -18,7 +18,7 @@ import { ProductService } from './product.service';
 export class OrderService {
   constructor(
     private http: HttpClient,
-    private productService: ProductService
+    private productService: ProductService,
   ) {}
 
   create(order: Order) {

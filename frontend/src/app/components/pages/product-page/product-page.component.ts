@@ -18,7 +18,7 @@ export class ProductPageComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
   ) {
     activatedRoute.params.subscribe((params) => {
       if (params.id) {
@@ -28,7 +28,7 @@ export class ProductPageComponent implements OnInit {
             catchError((error) => {
               this.toastrService.error(error['error'], 'Error');
               return throwError(error.error);
-            })
+            }),
           )
           .subscribe((serverProduct) => {
             this.product = serverProduct;

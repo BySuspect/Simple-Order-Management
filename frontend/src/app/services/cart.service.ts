@@ -10,13 +10,13 @@ import { CartItem } from '../shared/models/CartItem';
 export class CartService {
   private cart: Cart = this.getCartFromLocalStorage();
   private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject<Cart>(
-    this.cart
+    this.cart,
   );
   constructor() {}
 
   addToCart(product: Product): void {
     let cartItem = this.cart.items.find(
-      (item) => item.product.id == product.id
+      (item) => item.product.id == product.id,
     );
     if (cartItem) return;
 
@@ -53,11 +53,11 @@ export class CartService {
   private setCartToLocalStorage(): void {
     this.cart.totalPrice = this.cart.items.reduce(
       (prevSum, currentItem) => prevSum + currentItem.price,
-      0
+      0,
     );
     this.cart.totalCount = this.cart.items.reduce(
       (prevSum, currentItem) => prevSum + currentItem.quantity,
-      0
+      0,
     );
 
     const cartJson = JSON.stringify(this.cart);

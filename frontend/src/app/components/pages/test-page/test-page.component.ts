@@ -14,7 +14,7 @@ export class TestPageComponent {
   constructor(
     private productService: ProductService,
     private actvatedRoute: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
 
   test1() {
@@ -32,7 +32,7 @@ export class TestPageComponent {
           error: (error) => {
             console.error(error);
           },
-        })
+        }),
       );
   }
 }

@@ -17,7 +17,7 @@ export class OrderTrackPageComponent implements OnInit {
     activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
   ) {
     const params = activatedRoute.snapshot.params;
     if (!params.orderId) return;
@@ -29,7 +29,7 @@ export class OrderTrackPageComponent implements OnInit {
           this.toastrService.error(error['error'], 'Error');
           this.router.navigateByUrl('/');
           return throwError(error.error);
-        })
+        }),
       )
       .subscribe((order) => {
         this.order = order;

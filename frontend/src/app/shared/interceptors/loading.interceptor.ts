@@ -15,7 +15,7 @@ export class LoadingInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     this.loadingService.showLoading();
     pendingRequests = pendingRequests + 1;
@@ -30,7 +30,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         error: (_) => {
           this.handleHideLoading();
         },
-      })
+      }),
     );
   }
 

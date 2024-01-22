@@ -14,7 +14,10 @@ export class OrderItemComponent {
   order!: Order;
 
   isPayed: boolean = false;
-  constructor(private router: Router, private orderService: OrderService) {}
+  constructor(
+    private router: Router,
+    private orderService: OrderService,
+  ) {}
 
   trackClick() {
     this.router.navigateByUrl('/track/' + this.order.id);
