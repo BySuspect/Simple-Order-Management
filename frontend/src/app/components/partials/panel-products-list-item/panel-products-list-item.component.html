@@ -9,13 +9,31 @@
         <span>#{{ product.id }}</span>
       </div>
       <div>
-        <span>{{ product.price | currency }}</span>
+        <span>Price: $</span>
+        <input
+          class="price-input"
+          type="number"
+          name="price"
+          value="{{ product.price }}"
+        />
       </div>
       <div>
-        <span>{{ product.size }}</span>
+        <span>Size: </span>
+        <input
+          class="size-input"
+          type="text"
+          name="size"
+          value="{{ product.size }}"
+        />
       </div>
       <div>
-        <span>{{ product.stock }}</span>
+        <span>Stock: </span>
+        <input
+          class="stock-input"
+          type="number"
+          name="stock"
+          value="{{ product.stock }}"
+        />
       </div>
     </div>
   </div>

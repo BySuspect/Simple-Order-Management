@@ -17,6 +17,20 @@ export class PanelProductsListItemComponent {
   constructor(private productService: ProductService) {}
 
   updateProduct(product: Product) {
+    let priceInput = document.querySelector(
+      `[name="price"]`,
+    ) as HTMLInputElement;
+
+    let sizeInput = document.querySelector(`[name="size"]`) as HTMLInputElement;
+
+    let stockInput = document.querySelector(
+      `[name="stock"]`,
+    ) as HTMLInputElement;
+
+    this.product.price = parseFloat(priceInput.value);
+    this.product.size = sizeInput.value;
+    this.product.stock = parseInt(stockInput.value);
+
     this.productService.updateProduct(product).subscribe((product) => {
       console.log(product);
     });
