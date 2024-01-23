@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/shared/models/Product';
 
@@ -17,15 +18,4 @@ export class PanelProductsListComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  updateProduct(product: Product) {
-    this.productService.updateProduct(product).subscribe((product) => {
-      console.log(product);
-    });
-  }
-  deleteProduct(product: Product) {
-    this.productService.updateProduct(product).subscribe((product) => {
-      console.log(product);
-    });
-  }
 }

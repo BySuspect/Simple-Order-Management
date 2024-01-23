@@ -24,6 +24,7 @@
           "-moz-user-select"
         ]
       }
-    ]
+    ],
+    "button-type": "off"
   }
 }

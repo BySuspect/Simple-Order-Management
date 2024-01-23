@@ -1,4 +1,31 @@
 <div class="container"></div>
 <div class="component">
-  <panel-products-list></panel-products-list>
+  <!-- Tab links -->
+  <div class="tab">
+    <button
+      class="tablinks active"
+      id="Users-Button"
+      (click)="openTab('Users')"
+    >
+      Users
+    </button>
+    <button
+      class="tablinks active"
+      id="Products-Button"
+      (click)="openTab('Products')"
+    >
+      Products
+    </button>
+  </div>
+
+  <!-- Tab content -->
+  <div id="Users" class="tabcontent">
+    <h3>Users</h3>
+    <panel-users-list></panel-users-list>
+  </div>
+
+  <div id="Products" class="tabcontent">
+    <h3>Products</h3>
+    <panel-products-list></panel-products-list>
+  </div>
 </div>

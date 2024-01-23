@@ -32,6 +32,8 @@ import { OrderItemComponent } from './components/partials/order-item/order-item.
 import { TestPageComponent } from './components/pages/test-page/test-page.component';
 import { AdminPanelPageComponent } from './components/pages/admin-panel-page/admin-panel-page.component';
 import { PanelProductsListComponent } from './components/partials/panel-products-list/panel-products-list.component';
+import { PanelUsersListComponent } from './components/partials/panel-users-list/panel-users-list.component';
+import { PanelProductsListItemComponent } from './components/partials/panel-products-list-item/panel-products-list-item.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { PanelProductsListComponent } from './components/partials/panel-products
     TestPageComponent,
     AdminPanelPageComponent,
     PanelProductsListComponent,
+    PanelUsersListComponent,
+    PanelProductsListItemComponent,
   ],
   imports: [
     BrowserModule,
