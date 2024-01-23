@@ -1,1 +1,5 @@
-<p>panel-users-list works!</p>
+<div class="container">
+  <div *ngFor="let user of users">
+    <panel-users-list-item [user]="user"></panel-users-list-item>
+  </div>
+</div>

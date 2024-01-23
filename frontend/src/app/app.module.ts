@@ -34,6 +34,7 @@ import { AdminPanelPageComponent } from './components/pages/admin-panel-page/adm
 import { PanelProductsListComponent } from './components/partials/panel-products-list/panel-products-list.component';
 import { PanelUsersListComponent } from './components/partials/panel-users-list/panel-users-list.component';
 import { PanelProductsListItemComponent } from './components/partials/panel-products-list-item/panel-products-list-item.component';
+import { PanelUsersListItemComponent } from './components/partials/panel-users-list-item/panel-users-list-item.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { PanelProductsListItemComponent } from './components/partials/panel-prod
     PanelProductsListComponent,
     PanelUsersListComponent,
     PanelProductsListItemComponent,
+    PanelUsersListItemComponent,
   ],
   imports: [
     BrowserModule,

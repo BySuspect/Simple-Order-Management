@@ -9,7 +9,7 @@ export class AdminPanelPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.openTab('Products'); //Users - Products
+    this.openTab('Users'); //Users - Products
   }
 
   openTab(tabName: string): void {

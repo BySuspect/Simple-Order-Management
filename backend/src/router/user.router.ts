@@ -9,6 +9,33 @@ import { HTTP_BAD_REQUEST, HTTP_OK } from "../constants/http_status";
 const router = Router();
 
 router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const allUsers = await UserModel.find();
+    let users: {
+      id: any;
+      email: string;
+      name: string;
+      address: string;
+      isAdmin: boolean;
+      token: null;
+    }[] = [];
+
+    allUsers.forEach((user) => {
+      users.push({
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        address: user.address,
+        isAdmin: user.isAdmin,
+        token: null,
+      });
+    });
+    res.send(users);
+  }),
+);
+
+router.get(
   "/seed",
   asyncHandler(async (req, res) => {
     const userCount = await UserModel.countDocuments();

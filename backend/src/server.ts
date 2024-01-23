@@ -15,10 +15,12 @@ const app = express();
 app.use(express.json());
 
 app.use(
-  cors({
-    credentials: true,
-    origin: ["http://localhost:4200"],
-  }),
+  cors(
+    {
+      credentials: true,
+      origin: ["http://localhost:4200"],
+    } /**/,
+  ),
 );
 
 // Enable request logging in the development environment
