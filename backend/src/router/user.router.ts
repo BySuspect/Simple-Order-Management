@@ -12,25 +12,21 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const allUsers = await UserModel.find();
-    let users: {
-      id: any;
-      email: string;
-      name: string;
-      address: string;
-      isAdmin: boolean;
-      token: null;
-    }[] = [];
+    let users: {}[] = [];
 
     allUsers.forEach((user) => {
       users.push({
         id: user.id,
         email: user.email,
-        name: user.name,
+        firstName: user.firstName,
+        lastName: user.lastName,
         address: user.address,
+        phone: user.phone,
         isAdmin: user.isAdmin,
         token: null,
       });
     });
+
     res.send(users);
   }),
 );
@@ -68,7 +64,7 @@ router.post(
 router.post(
   "/register",
   asyncHandler(async (req, res) => {
-    const { name, email, password, address } = req.body;
+    const { firstName, lastName, email, password, phone, address } = req.body;
     const user = await UserModel.findOne({ email });
     if (user) {
       res.status(HTTP_BAD_REQUEST).send("User is already exist, please login!");
@@ -79,10 +75,12 @@ router.post(
 
     const newUser: User = {
       id: "",
-      name,
+      firstName,
+      lastName,
       email: email.toLowerCase(),
       password: encryptedPassword,
       address,
+      phone,
       isAdmin: false,
     };
 
@@ -107,8 +105,10 @@ const generateTokenReponse = (user: User) => {
   return {
     id: user.id,
     email: user.email,
-    name: user.name,
+    firstName: user.firstName,
+    lastName: user.lastName,
     address: user.address,
+    phone: user.phone,
     isAdmin: user.isAdmin,
     token: token,
   };

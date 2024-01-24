@@ -9,7 +9,7 @@
           <a routerLink="/login">Login</a>
         </li>
         <li *ngIf="user.token" class="menu-container">
-          <a routerLink="/dashboard">{{ user.name }}</a>
+          <a routerLink="/dashboard">{{ user.firstName }}</a>
           <div class="menu">
             <a routerLink="/profile">Profile</a>
             <a *ngIf="user.isAdmin" routerLink="/panel">Panel</a>

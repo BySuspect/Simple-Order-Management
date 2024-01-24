@@ -39,7 +39,7 @@ export class UserService {
         next: (user) => {
           this.userSubject.next(user);
           this.toastrService.success(
-            `Welcome ${user.name}!`,
+            `Welcome ${user.firstName}!`,
             'Login Successful',
           );
           this.setUserToLocalStorage(user);
@@ -58,7 +58,7 @@ export class UserService {
           this.setUserToLocalStorage(user);
           this.userSubject.next(user);
           this.toastrService.success(
-            `Welcome ${user.name}`,
+            `Welcome ${user.firstName}`,
             'Register Successful',
           );
         },

@@ -11,4 +11,8 @@ export class PanelUsersListItemComponent {
   user!: User;
 
   constructor() {}
+
+  updateUser() {}
+
+  deactiveUser() {}
 }

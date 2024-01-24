@@ -34,9 +34,10 @@ export class CheckoutPageComponent implements OnInit {
       this.router.navigateByUrl('/');
       return;
     }
-    let { name, address } = this.userService.currentUser;
+    let { firstName, lastName, address } = this.userService.currentUser;
     this.checkoutForm = this.formBuilder.group({
-      name: [name, Validators.required],
+      firstName: [firstName, Validators.required],
+      lastName: [lastName, Validators.required],
       address: [address, Validators.required],
     });
   }

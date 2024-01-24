@@ -2,7 +2,8 @@
   <div class="content">
     <app-title title="Order Form" fontSize="1.6rem"></app-title>
     <form [formGroup]="checkoutForm">
-      <text-input [control]="fc.name" label="Name"></text-input>
+      <text-input [control]="fc.firstName" label="FirstName"></text-input>
+      <text-input [control]="fc.lastName" label="LastName"></text-input>
       <text-input [control]="fc.address" label="Address"></text-input>
     </form>
     <order-items-list [order]="order"></order-items-list>

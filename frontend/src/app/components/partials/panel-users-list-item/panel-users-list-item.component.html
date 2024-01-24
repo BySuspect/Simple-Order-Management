@@ -1,1 +1,55 @@
-<p>{{ user.name }}</p>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <!-- <img [src]="user.image" [alt]="user.name" /> -->
+      <span>#{{ user.id }}</span>
+    </div>
+    <div class="card-body">
+      <div>
+        <span>First Name: </span>
+        <input
+          class="name"
+          type="text"
+          name="firstname"
+          value="{{ user.firstName }}"
+          placeholder="Name"
+        />
+      </div>
+      <div>
+        <span>Last Name: </span>
+        <input
+          class="name"
+          type="text"
+          name="lastname"
+          value="{{ user.lastName }}"
+          placeholder="Sur Name"
+        />
+      </div>
+      <div>
+        <span>Email: </span>
+        <input
+          class="email"
+          type="email"
+          name="email"
+          value="{{ user.email }}"
+          placeholder="Email"
+        />
+      </div>
+      <div>
+        <span>Phone: </span>
+        <input
+          class="phone"
+          type="text"
+          name="phone"
+          value="{{ user.phone }}"
+          placeholder="Phone Number"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button (click)="deactiveUser()">Delete</button>
+    <button (click)="updateUser()">Update</button>
+  </div>
+</div>
