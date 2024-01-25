@@ -3,9 +3,18 @@
     <app-title title="Register"></app-title>
     <form [formGroup]="registerForm" (ngSubmit)="submit()">
       <text-input
-        [control]="fc.name"
+        [control]="fc.firstName"
         [showErrorsWhen]="isSubmitted"
-        label="Name"
+        placeHolder="First Name"
+        label="First Name"
+      >
+        `</text-input
+      >
+      <text-input
+        [control]="fc.lastName"
+        [showErrorsWhen]="isSubmitted"
+        label="Last Name"
+        placeHolder="Last Name"
       >
         `</text-input
       >
@@ -14,6 +23,7 @@
         [control]="fc.email"
         [showErrorsWhen]="isSubmitted"
         label="Email"
+        placeHolder="Email"
         type="email"
       >
         `</text-input
@@ -23,6 +33,7 @@
         [control]="fc.password"
         [showErrorsWhen]="isSubmitted"
         label="Password"
+        placeHolder="Password"
         type="password"
       >
         `</text-input
@@ -32,7 +43,17 @@
         [control]="fc.confirmPassword"
         [showErrorsWhen]="isSubmitted"
         label="Confirm Password"
+        placeHolder="Confirm Password"
         type="password"
+      >
+        `</text-input
+      >
+
+      <text-input
+        [control]="fc.phone"
+        [showErrorsWhen]="isSubmitted"
+        label="Phone"
+        placeHolder="Phone"
       >
         `</text-input
       >
@@ -41,6 +62,7 @@
         [control]="fc.address"
         [showErrorsWhen]="isSubmitted"
         label="Address"
+        placeHolder="Address"
       >
         `</text-input
       >

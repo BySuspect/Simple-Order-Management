@@ -20,15 +20,21 @@ export class RegisterPageComponent implements OnInit {
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-  ) {}
+  ) {
+    if (this.userService.currentUser.token) {
+      this.router.navigateByUrl('/');
+    }
+  }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group(
       {
-        name: ['', [Validators.required, Validators.minLength(2)]],
+        firstName: ['', [Validators.required, Validators.minLength(2)]],
+        lastName: ['', [Validators.required, Validators.minLength(2)]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(4)]],
         confirmPassword: ['', Validators.required],
+        phone: ['', [Validators.required, Validators.minLength(10)]],
         address: ['', [Validators.required, Validators.minLength(10)]],
       },
       {
@@ -49,10 +55,12 @@ export class RegisterPageComponent implements OnInit {
 
     const fv = this.registerForm.value;
     const user: IUserRegister = {
-      name: fv.name,
+      firstName: fv.firstName,
+      lastName: fv.lastName,
       email: fv.email,
       password: fv.password,
       confirmPassword: fv.confirmPassword,
+      phone: fv.phone,
       address: fv.address,
     };
 
