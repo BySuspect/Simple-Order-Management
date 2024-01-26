@@ -14,5 +14,7 @@ export class PanelUsersListItemComponent {
 
   updateUser() {}
 
+  activeUser() {}
+
   deactiveUser() {}
 }

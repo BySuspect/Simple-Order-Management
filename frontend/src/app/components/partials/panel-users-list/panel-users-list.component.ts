@@ -13,6 +13,7 @@ export class PanelUsersListComponent {
   constructor(private userService: UserService) {
     this.userService.getAll().subscribe((users) => {
       this.users = users;
+      console.log(this.users);
     });
   }
 }

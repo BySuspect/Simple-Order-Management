@@ -10,6 +10,8 @@ export interface Product {
   stock: number;
   favorite: boolean;
   image: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export const ProductSchema = new Schema<Product>(
@@ -22,6 +24,8 @@ export const ProductSchema = new Schema<Product>(
     stock: { type: Number, required: true },
     favorite: { type: Boolean, required: true },
     image: { type: String, required: true },
+    createdAt: { type: Date, required: true },
+    updatedAt: { type: Date, required: true },
   },
   {
     toJSON: {

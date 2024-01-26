@@ -9,6 +9,10 @@ export interface User {
   address: string;
   phone: string;
   isAdmin: boolean;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  lastLogin: Date;
 }
 
 export const UserSchema = new Schema<User>({
@@ -19,6 +23,10 @@ export const UserSchema = new Schema<User>({
   phone: { type: String, required: true },
   address: { type: String, required: true },
   isAdmin: { type: Boolean, required: true },
+  isActive: { type: Boolean, required: true },
+  createdAt: { type: Date, required: true },
+  updatedAt: { type: Date, required: true },
+  lastLogin: { type: Date, required: true },
 });
 
 export const UserModel = model<User>("user", UserSchema);

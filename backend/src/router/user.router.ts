@@ -23,6 +23,10 @@ router.get(
         address: user.address,
         phone: user.phone,
         isAdmin: user.isAdmin,
+        isActive: user.isActive,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+        lastLogin: user.lastLogin,
         token: null,
       });
     });
@@ -52,11 +56,20 @@ router.post(
     const user = await UserModel.findOne({ email });
 
     if (user) {
-      if (await bcrypt.compare(password, user.password)) {
-        res.status(HTTP_OK).send(generateTokenReponse(user));
-      } else {
-        res.status(HTTP_BAD_REQUEST).send("Email or password is invalid!");
-      }
+      if (user.isActive) {
+        if (await bcrypt.compare(password, user.password)) {
+          user.lastLogin = new Date();
+          await user.save();
+          res.status(HTTP_OK).send(generateTokenReponse(user));
+        } else {
+          res.status(HTTP_BAD_REQUEST).send("Email or password is invalid!");
+        }
+      } else
+        res
+          .status(HTTP_BAD_REQUEST)
+          .send(
+            "This account is deactivated!\nPlease contact support for help.",
+          );
     }
   }),
 );
@@ -82,6 +95,10 @@ router.post(
       address,
       phone,
       isAdmin: false,
+      isActive: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      lastLogin: new Date(),
     };
 
     const dbUser = await UserModel.create(newUser);
@@ -110,7 +127,11 @@ const generateTokenReponse = (user: User) => {
     address: user.address,
     phone: user.phone,
     isAdmin: user.isAdmin,
+    isActive: user.isActive,
     token: token,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+    lastLogin: user.lastLogin,
   };
 };
 

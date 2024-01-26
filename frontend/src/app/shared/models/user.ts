@@ -7,4 +7,8 @@ export class User {
   phone!: string;
   isAdmin!: boolean;
   token!: string;
+  isActive!: boolean;
+  createdAt!: Date;
+  updatedAt!: Date;
+  lastLogin!: Date;
 }
