@@ -60,7 +60,7 @@ export class CheckoutPageComponent implements OnInit {
       return;
     }
 
-    this.order.name = this.fc.name.value;
+    this.order.name = this.fc.firstName.value + ' ' + this.fc.lastName.value;
     this.order.address = this.fc.address.value;
 
     this.orderService.create(this.order).subscribe({
