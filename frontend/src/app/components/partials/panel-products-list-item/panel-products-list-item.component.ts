@@ -16,28 +16,26 @@ export class PanelProductsListItemComponent {
 
   constructor(private productService: ProductService) {}
 
-  updateProduct(product: Product) {
+  updateProduct() {
+    const newProduct = this.product;
     let priceInput = document.querySelector(
-      `[name="price"]`,
+      `[name="${this.product.id}-price"]`,
     ) as HTMLInputElement;
 
-    let sizeInput = document.querySelector(`[name="size"]`) as HTMLInputElement;
+    let sizeInput = document.querySelector(
+      `[name="${this.product.id}-size"]`,
+    ) as HTMLInputElement;
 
     let stockInput = document.querySelector(
-      `[name="stock"]`,
+      `[name="${this.product.id}-stock"]`,
     ) as HTMLInputElement;
 
-    this.product.price = parseFloat(priceInput.value);
-    this.product.size = sizeInput.value;
-    this.product.stock = parseInt(stockInput.value);
-
-    this.productService.updateProduct(product).subscribe((product) => {
-      console.log(product);
+    newProduct.price = parseFloat(priceInput.value);
+    newProduct.size = sizeInput.value;
+    newProduct.stock = parseInt(stockInput.value);
+    this.productService.updateProduct(newProduct).subscribe((product: any) => {
+      console.log(product.stock);
     });
   }
-  deleteProduct(product: Product) {
-    this.productService.updateProduct(product).subscribe((product) => {
-      console.log(product);
-    });
-  }
+  deleteProduct() {}
 }

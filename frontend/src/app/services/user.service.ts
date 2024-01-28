@@ -10,6 +10,7 @@ import {
 } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
 import { IUserRegister } from '../shared/interfaces/IUserRegister';
+import { Router } from '@angular/router';
 
 const USER_KEY = 'User';
 
@@ -25,6 +26,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private toastrService: ToastrService,
+    private router: Router,
   ) {
     this.userObservable = this.userSubject.asObservable();
   }
@@ -86,6 +88,38 @@ export class UserService {
   }
 
   getAll() {
-    return this.http.get<User[]>(USERS_URL);
+    return this.http.get<User[]>(USERS_URL).pipe(
+      tap({
+        error: (errorResponse) => {
+          if (errorResponse.status == 401) {
+            this.logout();
+            this.router.navigateByUrl('/login');
+            this.toastrService.error('Unauthorized', 'Please login again');
+          } else
+            this.toastrService.error(errorResponse.status, errorResponse.error);
+        },
+      }),
+    );
+  }
+
+  updateUser(user: User) {
+    return this.http.post<User>(USERS_URL, user).pipe(
+      tap({
+        next: (user) => {
+          if (user.id == this.userSubject.value.id) {
+            const localUser = this.getUserFromLocalStorage();
+            localUser.firstName = user.firstName;
+            localUser.lastName = user.lastName;
+            localUser.email = user.email;
+            localUser.phone = user.phone;
+            localUser.address = user.address;
+            this.setUserToLocalStorage(localUser);
+          }
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.status, errorResponse.message);
+        },
+      }),
+    );
   }
 }

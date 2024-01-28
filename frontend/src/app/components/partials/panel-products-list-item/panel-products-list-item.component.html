@@ -13,7 +13,7 @@
         <input
           class="price-input"
           type="number"
-          name="price"
+          name="{{ product.id }}-price"
           value="{{ product.price }}"
         />
       </div>
@@ -22,7 +22,7 @@
         <input
           class="size-input"
           type="text"
-          name="size"
+          name="{{ product.id }}-size"
           value="{{ product.size }}"
         />
       </div>
@@ -31,7 +31,7 @@
         <input
           class="stock-input"
           type="number"
-          name="stock"
+          name="{{ product.id }}-stock"
           value="{{ product.stock }}"
         />
       </div>
@@ -39,7 +39,7 @@
   </div>
 
   <div class="buttons">
-    <button (click)="updateProduct(product)">Update</button>
-    <button (click)="deleteProduct(product)">Delete</button>
+    <button (click)="updateProduct()">Update</button>
+    <button (click)="deleteProduct()">Delete</button>
   </div>
 </div>

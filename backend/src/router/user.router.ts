@@ -1,16 +1,36 @@
 import { Router } from "express";
 import { sample_users } from "../data";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import { User, UserModel } from "../models/user.mode";
-import { HTTP_BAD_REQUEST, HTTP_OK } from "../constants/http_status";
+import {
+  HTTP_BAD_REQUEST,
+  HTTP_OK,
+  HTTP_UNAUTHORIZED,
+} from "../constants/http_status";
 
 const router = Router();
 
+//root
 router.get(
   "/",
   asyncHandler(async (req, res) => {
+    if (!req.headers.access_token) {
+      res
+        .status(HTTP_BAD_REQUEST)
+        .send("Access token is not found!\nPlease re login.");
+      return;
+    }
+
+    const tokenData = verifyToken(req.headers.access_token as string);
+
+    if (tokenData.message) {
+      res.status(HTTP_UNAUTHORIZED).send(tokenData.message);
+      return;
+    }
+    console.log();
+
     const allUsers = await UserModel.find();
     let users: {}[] = [];
 
@@ -31,10 +51,51 @@ router.get(
       });
     });
 
-    res.send(users);
+    res.status(HTTP_OK).send(users);
   }),
 );
 
+//root
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    if (!req.headers.access_token) {
+      res.status(HTTP_UNAUTHORIZED).send("Access token is not found!");
+      return;
+    }
+
+    const { id, firstName, lastName, email, phone, address } = req.body;
+    const user = await UserModel.findById(id);
+
+    if (user) {
+      user.firstName = firstName;
+      user.lastName = lastName;
+      user.email = email;
+      user.phone = phone;
+      user.address = address;
+      user.save();
+
+      res.status(HTTP_OK).send({
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        address: user.address,
+        phone: user.phone,
+        isAdmin: user.isAdmin,
+        isActive: user.isActive,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+        lastLogin: user.lastLogin,
+        token: null,
+      });
+    } else {
+      res.status(HTTP_BAD_REQUEST).send("User not found");
+    }
+  }),
+);
+
+//seed
 router.get(
   "/seed",
   asyncHandler(async (req, res) => {
@@ -49,6 +110,7 @@ router.get(
   }),
 );
 
+//login
 router.post(
   "/login",
   asyncHandler(async (req, res) => {
@@ -74,6 +136,7 @@ router.post(
   }),
 );
 
+//register
 router.post(
   "/register",
   asyncHandler(async (req, res) => {
@@ -133,6 +196,15 @@ const generateTokenReponse = (user: User) => {
     updatedAt: user.updatedAt,
     lastLogin: user.lastLogin,
   };
+};
+
+const verifyToken: any = (token: string) => {
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
+    return decoded;
+  } catch (err) {
+    return err;
+  }
 };
 
 export default router;

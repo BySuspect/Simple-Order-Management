@@ -10,7 +10,7 @@
         <input
           class="name"
           type="text"
-          name="firstname"
+          name="{{ user.id }}-firstname"
           value="{{ user.firstName }}"
           placeholder="Name"
         />
@@ -20,7 +20,7 @@
         <input
           class="name"
           type="text"
-          name="lastname"
+          name="{{ user.id }}-lastname"
           value="{{ user.lastName }}"
           placeholder="Sur Name"
         />
@@ -30,7 +30,7 @@
         <input
           class="email"
           type="email"
-          name="email"
+          name="{{ user.id }}-email"
           value="{{ user.email }}"
           placeholder="Email"
         />
@@ -40,7 +40,7 @@
         <input
           class="phone"
           type="text"
-          name="phone"
+          name="{{ user.id }}-phone"
           value="{{ user.phone }}"
           placeholder="Phone Number"
         />

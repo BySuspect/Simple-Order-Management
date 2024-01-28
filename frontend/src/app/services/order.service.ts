@@ -56,19 +56,6 @@ export class OrderService {
   }
 
   cancelOrder(order: Order): any {
-    const newOrder = this.http.post(ORDER_CANCEL_URL, order);
-
-    order.items.forEach((element) => {
-      this.productService
-        .getProductById(element.product.id)
-        .subscribe((product) => {
-          product.stock += element.quantity;
-          this.productService.updateProduct(product).subscribe((any) => {
-            console.log(any);
-          });
-        });
-    });
-
-    return newOrder;
+    return this.http.post(ORDER_CANCEL_URL, order);
   }
 }

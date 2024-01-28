@@ -94,7 +94,7 @@ router.post(
 
     if (product) {
       await product.save();
-      res.send(product._id);
+      res.send(product);
     } else res.status(HTTP_INTERNAL_SERVER_ERROR).send("Product not updated");
   }),
 );

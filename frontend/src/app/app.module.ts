@@ -74,7 +74,7 @@ import { PanelUsersListItemComponent } from './components/partials/panel-users-l
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
+      timeOut: 5000,
       positionClass: 'toast-bottom-right',
       closeButton: true,
     }),

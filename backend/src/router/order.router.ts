@@ -9,6 +9,7 @@ import { OrderStatus } from "../constants/order_status";
 import { OrderModel } from "../models/order.model";
 import auth from "../middlewares/auth.mid";
 import mongoose from "mongoose";
+import { ProductModel } from "../models/product.model";
 
 const router = Router();
 router.use(auth);
@@ -55,10 +56,17 @@ router.post(
       res.status(HTTP_BAD_REQUEST).send("Order Not Found!");
       return;
     }
-
     order.status = OrderStatus.CANCELED;
-
     await order.save();
+
+    // updating product stock
+    order.items.forEach(async (item) => {
+      const product = await ProductModel.findOne({ _id: item.product.id });
+      if (product) {
+        product.stock += item.quantity;
+        await product.save();
+      }
+    });
 
     res.send(order);
   }),
