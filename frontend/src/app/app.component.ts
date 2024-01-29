@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Welcome!';
+
+  constructor(private userService: UserService) {
+    console.log('app component');
+    userService.checkToken()?.subscribe((res) => {
+      //console.log(res);
+    });
+  }
 }

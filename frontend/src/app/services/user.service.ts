@@ -5,6 +5,7 @@ import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { HttpClient } from '@angular/common/http';
 import {
   USERS_URL,
+  USERS_VERIFY_URL,
   USER_LOGIN_URL,
   USER_REGISTER_URL,
 } from '../shared/constants/urls';
@@ -121,5 +122,28 @@ export class UserService {
         },
       }),
     );
+  }
+
+  checkToken() {
+    if (this.currentUser.token) {
+      return this.http.get(USERS_VERIFY_URL).pipe(
+        tap({
+          error: (errorResponse) => {
+            if (errorResponse.status == 402) {
+              console.log('User Verifed');
+              return;
+            } else if (errorResponse.status == 401) {
+              this.logout();
+              this.router.navigateByUrl('/login');
+              this.toastrService.error('Please login again', 'Unauthorized');
+            } else
+              this.toastrService.error(
+                errorResponse.status,
+                errorResponse.error,
+              );
+          },
+        }),
+      );
+    } else return null;
   }
 }

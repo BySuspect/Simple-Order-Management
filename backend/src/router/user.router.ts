@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { sample_users } from "../data";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import { User, UserModel } from "../models/user.mode";
+import { verifyToken } from "../utilities/verify";
 import {
+  HTTP_ACCEPTED,
   HTTP_BAD_REQUEST,
   HTTP_OK,
   HTTP_UNAUTHORIZED,
@@ -23,13 +25,16 @@ router.get(
       return;
     }
 
-    const tokenData = verifyToken(req.headers.access_token as string);
+    const tokenData = verifyToken(req.headers.access_token as string) as any;
 
     if (tokenData.message) {
       res.status(HTTP_UNAUTHORIZED).send(tokenData.message);
       return;
     }
-    console.log();
+    if (!tokenData.isAdmin) {
+      res.send(HTTP_UNAUTHORIZED).send("You are not admin!");
+      return;
+    }
 
     const allUsers = await UserModel.find();
     let users: {}[] = [];
@@ -107,6 +112,20 @@ router.get(
 
     await UserModel.create(sample_users);
     res.status(HTTP_OK).send("Seed is done!");
+  }),
+);
+
+//verify
+router.get(
+  "/verify",
+  asyncHandler(async (req, res) => {
+    const tokenData = verifyToken(req.headers.access_token as string) as any;
+    if (tokenData.message) {
+      res.status(HTTP_UNAUTHORIZED).send(tokenData.message);
+      return;
+    } else {
+      res.status(HTTP_ACCEPTED).send();
+    }
   }),
 );
 
@@ -196,15 +215,6 @@ const generateTokenReponse = (user: User) => {
     updatedAt: user.updatedAt,
     lastLogin: user.lastLogin,
   };
-};
-
-const verifyToken: any = (token: string) => {
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
-    return decoded;
-  } catch (err) {
-    return err;
-  }
 };
 
 export default router;

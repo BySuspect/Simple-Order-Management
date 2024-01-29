@@ -9,6 +9,7 @@ export const PRODUCT_UPDATE_URL = PRODUCTS_URL + '/update';
 
 //User
 export const USERS_URL = BASE_URL + '/users';
+export const USERS_VERIFY_URL = USERS_URL + '/verify';
 export const USER_LOGIN_URL = USERS_URL + '/login';
 export const USER_REGISTER_URL = USERS_URL + '/register';
 
