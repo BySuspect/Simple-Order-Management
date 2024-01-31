@@ -14,6 +14,7 @@ import { ProductModel } from "../models/product.model";
 const router = Router();
 router.use(auth);
 
+//root
 router.get(
   "/",
   asyncHandler(async (req: any, res) => {
@@ -21,10 +22,11 @@ router.get(
       user: req.user.id,
     });
     if (order) res.status(HTTP_OK).send(order);
-    else res.status(HTTP_BAD_REQUEST).send();
+    else res.status(HTTP_NOT_FOUND).send();
   }),
 );
 
+//create
 router.post(
   "/create",
   asyncHandler(async (req: any, res: any) => {
@@ -41,6 +43,7 @@ router.post(
   }),
 );
 
+//cancel
 router.post(
   "/cancel",
   asyncHandler(async (req: any, res: any) => {
@@ -72,6 +75,7 @@ router.post(
   }),
 );
 
+//newOrderForCurrentUser
 router.get(
   "/newOrderForCurrentUser",
   asyncHandler(async (req: any, res) => {
@@ -84,6 +88,7 @@ router.get(
   }),
 );
 
+//pay
 router.post(
   "/pay",
   asyncHandler(async (req: any, res) => {
@@ -109,6 +114,7 @@ async function getNewOrderForCurrentUser(req: any) {
   });
 }
 
+//tack
 router.get(
   "/track/:id",
   asyncHandler(async (req, res) => {
@@ -122,6 +128,38 @@ router.get(
     const order = await OrderModel.findById(orderId);
     if (order) res.status(HTTP_OK).send(order);
     else res.status(HTTP_NOT_FOUND);
+  }),
+);
+
+//user orders
+router.get(
+  "/user/:id",
+  asyncHandler(async (req, res) => {
+    const userId: string = req.params.id;
+    if (mongoose.Types.ObjectId.isValid(userId)) {
+      const order: any[] = await OrderModel.find({
+        user: userId,
+      });
+      if (order) res.status(HTTP_OK).send(order);
+      else res.status(HTTP_NOT_FOUND).send("User has not have any orders.");
+    } else {
+      res.status(HTTP_BAD_REQUEST).send("User not found");
+    }
+  }),
+);
+
+//delete
+router.delete(
+  "/delete/:id",
+  asyncHandler(async (req, res) => {
+    const id: string = req.params.id;
+    if (mongoose.Types.ObjectId.isValid(id)) {
+      //const data = OrderModel.deleteOne({ _id: id });
+      console.log(id);
+      res.status(HTTP_OK).send();
+    } else {
+      res.status(HTTP_BAD_REQUEST).send("User not found");
+    }
   }),
 );
 

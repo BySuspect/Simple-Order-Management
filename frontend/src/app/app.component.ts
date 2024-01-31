@@ -11,8 +11,9 @@ export class AppComponent {
 
   constructor(private userService: UserService) {
     console.log('app component');
-    userService.checkToken()?.subscribe((res) => {
-      //console.log(res);
-    });
+    //old verify method
+    // userService.checkToken()?.subscribe((res) => {
+    //   //console.log(res);
+    // });
   }
 }

@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { tap } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
 import { PRODUCT_DROP_STOCK_URL } from 'src/app/shared/constants/urls';
 
 @Component({
@@ -15,24 +17,12 @@ export class TestPageComponent {
     private productService: ProductService,
     private actvatedRoute: ActivatedRoute,
     private http: HttpClient,
+    private userService: UserService,
+    private cookieService: CookieService,
   ) {}
 
   test1() {
     console.log('test1 click');
-    this.http
-      .post(PRODUCT_DROP_STOCK_URL, {
-        productId: '65a5507361e232d8dff03cd3',
-        quantity: 1,
-      })
-      .pipe(
-        tap({
-          next: (any) => {
-            console.log(any);
-          },
-          error: (error) => {
-            console.error(error);
-          },
-        }),
-      );
+    this.cookieService.set('test', 'test');
   }
 }

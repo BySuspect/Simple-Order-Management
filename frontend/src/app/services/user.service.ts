@@ -4,6 +4,7 @@ import { User } from '../shared/models/user';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { HttpClient } from '@angular/common/http';
 import {
+  USERS_CHECK_ISADMIN_URL,
   USERS_URL,
   USERS_VERIFY_URL,
   USER_LOGIN_URL,
@@ -12,8 +13,9 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { IUserRegister } from '../shared/interfaces/IUserRegister';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
-const USER_KEY = 'User';
+const USER_KEY = 'sessionData';
 
 @Injectable({
   providedIn: 'root',
@@ -24,10 +26,31 @@ export class UserService {
   );
   public userObservable: Observable<User>;
 
+  private setUserToLocalStorage(user: User) {
+    const userJson = JSON.stringify(user);
+    const base64User = btoa(userJson);
+    this.cookieService.set(USER_KEY, base64User, {
+      expires: 30,
+      secure: true,
+    });
+    console.log(this.cookieService.get(USER_KEY));
+  }
+
+  private getUserFromLocalStorage(): User {
+    const base64User = this.cookieService.get(USER_KEY);
+    if (base64User) {
+      const userJson = atob(base64User);
+      return JSON.parse(userJson) as User;
+    } else {
+      return new User();
+    }
+  }
+
   constructor(
     private http: HttpClient,
     private toastrService: ToastrService,
     private router: Router,
+    private cookieService: CookieService,
   ) {
     this.userObservable = this.userSubject.asObservable();
   }
@@ -74,18 +97,8 @@ export class UserService {
 
   logout() {
     this.userSubject.next(new User());
-    localStorage.removeItem(USER_KEY);
+    this.cookieService.delete(USER_KEY);
     window.location.reload();
-  }
-
-  private setUserToLocalStorage(user: User) {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
-  }
-
-  private getUserFromLocalStorage() {
-    const userJson = localStorage.getItem(USER_KEY);
-    if (userJson) return JSON.parse(userJson) as User;
-    else return new User();
   }
 
   getAll() {
@@ -145,5 +158,9 @@ export class UserService {
         }),
       );
     } else return null;
+  }
+
+  checkIsAdmin() {
+    return this.http.get(USERS_CHECK_ISADMIN_URL);
   }
 }

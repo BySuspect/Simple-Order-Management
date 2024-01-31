@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  ORDERS_BY_USER,
   ORDERS_URL,
   ORDER_CANCEL_URL,
   ORDER_CREATE_URL,
+  ORDER_DELETE_URL,
   ORDER_NEW_FOR_CURRENT_USER_URL,
   ORDER_PAY_URL,
   ORDER_TRACK_URL,
 } from '../shared/constants/urls';
 import { Order } from '../shared/models/Order';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ProductService } from './product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +22,7 @@ export class OrderService {
   constructor(
     private http: HttpClient,
     private productService: ProductService,
+    private toastrService: ToastrService,
   ) {}
 
   create(order: Order) {
@@ -43,12 +47,30 @@ export class OrderService {
     return this.http.post<string>(ORDER_PAY_URL, order);
   }
 
-  trackOrderById(id: number): Observable<Order> {
+  trackOrderById(id: string): Observable<Order> {
     return this.http.get<Order>(ORDER_TRACK_URL + id);
   }
 
-  getOrderById(id: number): Observable<Order> {
+  getOrderById(id: string): Observable<Order> {
     return this.http.get<Order>(ORDER_TRACK_URL + id);
+  }
+
+  getOrdersByUserId(id: string): Observable<Order[]> {
+    return this.http.get<Order[]>(ORDERS_BY_USER + id).pipe(
+      tap({
+        error: (res) => {
+          if (res.status == 400) {
+            this.toastrService.error(res.error, 'Error!');
+          } else if (res.status == 404) {
+            this.toastrService.error(res.error, 'Error!');
+          }
+        },
+      }),
+    );
+  }
+
+  deleteOrderById(id: string): Observable<Order> {
+    return this.http.delete<Order>(ORDER_DELETE_URL + id);
   }
 
   getAllOrdersForCurrentUser(): Observable<Order[]> {

@@ -20,6 +20,12 @@
         Checkout
       </button>
       <button
+        *ngIf="localUser.isAdmin && order.status == 'CANCELED'"
+        (click)="deleteOrderClick()"
+      >
+        Delete
+      </button>
+      <button
         *ngIf="
           order.status != 'DELIVERED' &&
           order.status != 'SHIPPED' &&

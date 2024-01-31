@@ -129,6 +129,21 @@ router.get(
   }),
 );
 
+//checkadmin
+router.get(
+  "/checkadmin",
+  asyncHandler(async (req, res) => {
+    const tokenData = verifyToken(req.headers.access_token as string) as any;
+    if (tokenData.message) {
+      res.status(HTTP_UNAUTHORIZED).send(tokenData.message);
+      return;
+    } else {
+      if (tokenData.isAdmin) res.status(HTTP_ACCEPTED).send(true);
+      else res.status(HTTP_UNAUTHORIZED).send(false);
+    }
+  }),
+);
+
 //login
 router.post(
   "/login",
