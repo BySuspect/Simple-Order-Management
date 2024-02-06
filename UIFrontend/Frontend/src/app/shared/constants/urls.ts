@@ -1,21 +1,22 @@
-const BASE_URL = 'http://localhost:5050/api';
+const BASE_URL = 'http://localhost:5000/api';
+const API_VERSION = '/v1';
+
+const API_URL = BASE_URL + API_VERSION;
 
 //Product
-export const PRODUCTS_URL = BASE_URL + '/products';
+export const PRODUCTS_URL = API_URL + '/products';
 export const PRODUCT_BY_SEARCH_URL = PRODUCTS_URL + '/search/';
 export const PRODUCT_BY_ID_URL = PRODUCTS_URL + '/';
 export const PRODUCT_DROP_STOCK_URL = PRODUCTS_URL + '/dropstock';
 export const PRODUCT_UPDATE_URL = PRODUCTS_URL + '/update';
 
-//User
-export const USERS_URL = BASE_URL + '/users';
-export const USERS_VERIFY_URL = USERS_URL + '/verify';
-export const USERS_CHECK_ISADMIN_URL = USERS_URL + '/checkadmin';
-export const USER_LOGIN_URL = USERS_URL + '/login';
-export const USER_REGISTER_URL = USERS_URL + '/register';
+//AUTH
+export const AUTH_URL = API_URL + '/Auth';
+export const USER_REGISTER_URL = AUTH_URL + '/register';
+export const USER_LOGIN_URL = AUTH_URL + '/login';
 
 //Order
-export const ORDERS_URL = BASE_URL + '/orders';
+export const ORDERS_URL = API_URL + '/orders';
 export const ORDERS_BY_USER = ORDERS_URL + '/user/';
 export const ORDER_CREATE_URL = ORDERS_URL + '/create';
 export const ORDER_CANCEL_URL = ORDERS_URL + '/cancel';

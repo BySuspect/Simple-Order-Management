@@ -15,19 +15,19 @@ export class PanelUsersListItemComponent {
 
   updateUser() {
     let firstNameInput = document.querySelector(
-      `[name="${this.user.id}-firstname"]`,
+      `[name="${this.user.id}-firstname"]`
     ) as HTMLInputElement;
 
     let lastNameInput = document.querySelector(
-      `[name="${this.user.id}-lastname"]`,
+      `[name="${this.user.id}-lastname"]`
     ) as HTMLInputElement;
 
     let emailInput = document.querySelector(
-      `[name="${this.user.id}-email"]`,
+      `[name="${this.user.id}-email"]`
     ) as HTMLInputElement;
 
     let phoneInput = document.querySelector(
-      `[name="${this.user.id}-phone"]`,
+      `[name="${this.user.id}-phone"]`
     ) as HTMLInputElement;
 
     this.user.firstName = firstNameInput.value;
@@ -35,10 +35,10 @@ export class PanelUsersListItemComponent {
     this.user.email = emailInput.value;
     this.user.phone = phoneInput.value;
 
-    this.userService.updateUser(this.user).subscribe((user) => {
-      console.log(user);
-      this.user = user;
-    });
+    // this.userService.updateUser(this.user).subscribe((user) => {
+    //   console.log(user);
+    //   this.user = user;
+    // });
   }
 
   activeUser() {}

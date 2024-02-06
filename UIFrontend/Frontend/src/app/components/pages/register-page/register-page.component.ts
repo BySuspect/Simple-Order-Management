@@ -19,7 +19,7 @@ export class RegisterPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {
     if (this.userService.currentUser.token) {
       this.router.navigateByUrl('/');
@@ -34,12 +34,10 @@ export class RegisterPageComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(4)]],
         confirmPassword: ['', Validators.required],
-        phone: ['', [Validators.required, Validators.minLength(10)]],
-        address: ['', [Validators.required, Validators.minLength(10)]],
       },
       {
         validators: PasswordsMatchValidator('password', 'confirmPassword'),
-      },
+      }
     );
 
     this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl;
@@ -54,14 +52,12 @@ export class RegisterPageComponent implements OnInit {
     if (this.registerForm.invalid) return;
 
     const fv = this.registerForm.value;
+    if (fv.password != fv.confirmPassword) return;
+
     const user: IUserRegister = {
-      firstName: fv.firstName,
-      lastName: fv.lastName,
+      fullName: fv.firstName + ' ' + fv.lastName,
       email: fv.email,
       password: fv.password,
-      confirmPassword: fv.confirmPassword,
-      phone: fv.phone,
-      address: fv.address,
     };
 
     this.userService.register(user).subscribe((_) => {

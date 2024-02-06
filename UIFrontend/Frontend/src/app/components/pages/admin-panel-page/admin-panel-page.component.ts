@@ -12,19 +12,19 @@ export class AdminPanelPageComponent implements OnInit {
   constructor(
     private userService: UserService,
     private toastrService: ToastrService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.userService.checkIsAdmin().subscribe((res) => {
-      if (!res) {
-        this.toastrService.error(
-          'You must be an admin to access this page!',
-          'Error!',
-        );
-        this.router.navigateByUrl('/');
-      }
-    });
+    // this.userService.checkIsAdmin().subscribe((res) => {
+    //   if (!res) {
+    //     this.toastrService.error(
+    //       'You must be an admin to access this page!',
+    //       'Error!',
+    //     );
+    //     this.router.navigateByUrl('/');
+    //   }
+    // });
     this.openTab('Users'); //Users - Products
   }
 
@@ -36,7 +36,7 @@ export class AdminPanelPageComponent implements OnInit {
     let button = document.querySelector(`[id="${tabName}-Button"]`);
     button?.setAttribute(
       'class',
-      (button?.getAttribute('class') || '') + ' active',
+      (button?.getAttribute('class') || '') + ' active'
     );
 
     tabcontent = document.getElementsByClassName('tabcontent');
@@ -48,7 +48,7 @@ export class AdminPanelPageComponent implements OnInit {
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].setAttribute(
         'class',
-        tablinks[i].getAttribute('class')?.replace(' active', '') || '',
+        tablinks[i].getAttribute('class')?.replace(' active', '') || ''
       );
     }
 
@@ -56,7 +56,7 @@ export class AdminPanelPageComponent implements OnInit {
     (event?.currentTarget as HTMLElement)?.setAttribute(
       'class',
       ((event?.currentTarget as HTMLElement)?.getAttribute('class') || '') +
-        ' active',
+        ' active'
     );
   }
 }

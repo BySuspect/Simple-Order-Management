@@ -17,25 +17,25 @@ export class OrdersPageComponent {
     private orderService: OrderService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {
     this.route.queryParams.subscribe((params) => {
       if (params['user']) {
-        this.userService.checkIsAdmin().subscribe((res) => {
-          if (!res) {
-            this.toastrService.error(
-              'You must be an admin to access this page!',
-              'Error!',
-            );
-            this.router.navigateByUrl('/orders');
-          } else {
-            orderService
-              .getOrdersByUserId(params['user'])
-              .subscribe((orders) => {
-                this.orders = orders;
-              });
-          }
-        });
+        // this.userService.checkIsAdmin().subscribe((res) => {
+        //   if (!res) {
+        //     this.toastrService.error(
+        //       'You must be an admin to access this page!',
+        //       'Error!',
+        //     );
+        //     this.router.navigateByUrl('/orders');
+        //   } else {
+        //     orderService
+        //       .getOrdersByUserId(params['user'])
+        //       .subscribe((orders) => {
+        //         this.orders = orders;
+        //       });
+        //   }
+        // });
       } else {
         orderService.getAllOrdersForCurrentUser().subscribe((orders) => {
           this.orders = orders;
